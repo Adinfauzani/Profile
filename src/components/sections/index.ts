@@ -1,8 +1,9 @@
-export { BlogList } from './BlogList';
-export { FeaturedPostsSection } from './FeaturedPostsSection';
+export { CTASection } from './CTASection';
+export { FeaturedBlogs } from './FeaturedBlogs';
 export { FeaturedProjectsSection } from './FeaturedProjectsSection';
+export { FloatingStacks } from './FloatingStacks';
 export { HeroSection } from './HeroSection';
+export { InteractiveBlogs } from './InteractiveBlogs';
 export { NewsletterSection } from './NewsletterSection';
-export { RetrospectiveSection } from './RetrospectiveSection';
 export { TechStack } from './TechStack';
 export { TestimonialsSection } from './TestimonialsSection';

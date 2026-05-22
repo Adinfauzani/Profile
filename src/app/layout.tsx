@@ -1,18 +1,12 @@
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 
 import '../styles/globals.css';
+import '../styles/animations.css';
 
 import { Analytics } from '@/components/Analytics';
 import { Footer } from '@/components/layout/Footer';
 import { Navbar } from '@/components/layout/Navbar';
-import { ThemeProvider } from '@/components/ThemeProvider';
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-});
+import { dancingScript, plusJakartaSans } from '@/lib/fonts';
 
 export const metadata: Metadata = {
   title: 'Adin Fauzan | Fullstack Developer',
@@ -62,21 +56,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en' suppressHydrationWarning>
+    <html lang='en'>
       <body
-        className={`${inter.variable} bg-black text-white selection:bg-indigo-500/30 selection:text-indigo-300`}
+        className={`${plusJakartaSans.variable} ${dancingScript.variable} bg-black text-white selection:bg-indigo-500/30 selection:text-indigo-300`}
       >
-        <ThemeProvider
-          attribute='class'
-          defaultTheme='dark'
-          enableSystem={false}
-          disableTransitionOnChange
-        >
-          <Navbar />
-          <main className='relative'>{children}</main>
-          <Footer />
-          <Analytics />
-        </ThemeProvider>
+        <Navbar />
+        <main className='relative'>{children}</main>
+        <Footer />
+        <Analytics />
       </body>
     </html>
   );

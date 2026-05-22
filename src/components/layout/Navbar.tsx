@@ -1,164 +1,95 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { RiGithubFill, RiLinkedinFill, RiTwitterXFill } from 'react-icons/ri';
+import { Menu, X } from 'lucide-react';
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+import { useCallback, useEffect, useState } from 'react';
+
+import { navLinks } from '@/constants/navigation';
+import { socialLinks } from '@/constants/socials';
 
 import { cn } from '@/lib/utils';
 
-import { socialLinks } from '@/data/socials';
-
-import { ThemeToggle } from './ThemeToggle';
-
-const iconMap: Record<string, React.ComponentType<{ size?: number }>> = {
-  github: RiGithubFill,
-  linkedin: RiLinkedinFill,
-  twitter: RiTwitterXFill,
-};
-
-const navLinks = [
-  { href: '#projects', label: 'Projects' },
-  { href: '#stack', label: 'Stack' },
-  { href: '#blog', label: 'Blog' },
-];
+import { MobileMenu } from './MobileMenu';
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+  const handleScroll = useCallback(() => {
+    setScrolled(window.scrollY > 20);
   }, []);
 
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
+
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={cn(
-        'fixed left-0 right-0 top-0 z-50 transition-all duration-300',
-        isScrolled
-          ? 'bg-black/80 backdrop-blur-md border-b border-gray-800/50'
-          : 'bg-transparent',
-      )}
-    >
-      <div className='mx-auto w-11/12 max-w-6xl'>
-        <div className='flex h-16 items-center justify-between'>
-          {/* Logo */}
-          <a href='#' className='text-xl font-bold text-white'>
-            AF
-          </a>
+    <nav className='fixed left-0 right-0 top-0 z-50 flex justify-center px-4 pt-4'>
+      <motion.div
+        className={cn(
+          'mx-auto flex w-full max-w-5xl items-center justify-between rounded-full border border-white/10 bg-black/40 px-6 backdrop-blur-xl transition-all duration-500',
+          scrolled ? 'py-2' : 'py-3',
+        )}
+        animate={{
+          backdropFilter: scrolled ? 'blur(24px)' : 'blur(16px)',
+        }}
+      >
+        <Link href='/' className='text-lg font-bold text-white'>
+          AF
+        </Link>
 
-          {/* Desktop Nav */}
-          <div className='hidden items-center gap-8 md:flex'>
-            {navLinks.map((link) => (
-              <a
+        <div className='hidden items-center gap-1 md:flex'>
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href;
+            return (
+              <Link
                 key={link.href}
                 href={link.href}
-                className='text-sm text-gray-400 transition-colors hover:text-white'
-              >
-                {link.label}
-              </a>
-            ))}
-          </div>
-
-          {/* Right side */}
-          <div className='flex items-center gap-4'>
-            <ThemeToggle />
-            {/* Social Icons - Desktop */}
-            <div className='hidden gap-4 md:flex'>
-              {socialLinks.map((social) => {
-                const Icon = iconMap[social.icon];
-                return (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='text-gray-400 transition-colors hover:text-indigo-400'
-                    aria-label={social.label}
-                  >
-                    <Icon size={18} />
-                  </a>
-                );
-              })}
-            </div>
-
-            {/* Mobile menu button */}
-            <button
-              className='md:hidden text-gray-400'
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              aria-label='Toggle menu'
-            >
-              <svg
-                className='h-6 w-6'
-                fill='none'
-                stroke='currentColor'
-                viewBox='0 0 24 24'
-              >
-                {mobileMenuOpen ? (
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M6 18L18 6M6 6l12 12'
-                  />
-                ) : (
-                  <path
-                    strokeLinecap='round'
-                    strokeLinejoin='round'
-                    strokeWidth={2}
-                    d='M4 6h16M4 12h16M4 18h16'
-                  />
+                className={cn(
+                  'rounded-full px-4 py-1.5 text-sm font-medium transition-all duration-200',
+                  isActive
+                    ? 'bg-white/10 text-white'
+                    : 'text-gray-400 hover:text-white',
                 )}
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          className='border-t border-gray-800 bg-black/95 md:hidden'
-        >
-          <div className='flex flex-col p-4 gap-4'>
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className='text-gray-400 hover:text-white'
-                onClick={() => setMobileMenuOpen(false)}
               >
                 {link.label}
+              </Link>
+            );
+          })}
+        </div>
+
+        <div className='hidden items-center gap-3 md:flex'>
+          {socialLinks.map((s) => {
+            const Icon = s.icon;
+            return (
+              <a
+                key={s.label}
+                href={s.href}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='text-gray-500 transition-colors hover:text-white'
+                aria-label={s.label}
+              >
+                <Icon size={16} />
               </a>
-            ))}
-            <div className='flex gap-4 pt-2'>
-              {socialLinks.map((social) => {
-                const Icon = iconMap[social.icon];
-                return (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target='_blank'
-                    rel='noopener noreferrer'
-                    className='text-gray-400 hover:text-indigo-400'
-                    aria-label={social.label}
-                  >
-                    <Icon size={20} />
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-        </motion.div>
-      )}
-    </motion.nav>
+            );
+          })}
+        </div>
+
+        <button
+          onClick={() => setMobileOpen(!mobileOpen)}
+          className='text-gray-400 md:hidden'
+          aria-label='Toggle menu'
+        >
+          {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+        </button>
+      </motion.div>
+
+      <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />
+    </nav>
   );
 }

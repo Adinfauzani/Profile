@@ -18,3 +18,11 @@ export const stack = [
 ];
 
 export const tools = ['VS Code', 'Terminal', 'Figma', 'Postman', 'Arc Browser'];
+
+export const floatingStacks = [
+  'Next.js',
+  'NestJS',
+  'TypeScript',
+  'Tailwind CSS',
+  'shadcn/ui',
+];

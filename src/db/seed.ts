@@ -1,10 +1,10 @@
 import { neon } from '@neondatabase/serverless';
 import { drizzle } from 'drizzle-orm/neon-http';
 
-import { bucketListItems } from '@/data/bucket-list';
-import { guestbookEntries } from '@/data/guestbook';
-import { posts } from '@/data/posts';
-import { shorts } from '@/data/shorts';
+import { bucketListItems } from '@/constants/bucket-list';
+import { guestbookEntries } from '@/constants/guestbook';
+import { posts } from '@/constants/posts';
+import { shorts } from '@/constants/shorts';
 
 import * as schema from './schema';
 

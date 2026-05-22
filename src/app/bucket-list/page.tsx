@@ -2,8 +2,6 @@
 
 import { CheckCircle, Circle } from 'lucide-react';
 
-import { GlassCard } from '@/components/glass/GlassCard';
-
 type Status = 'completed' | 'in-progress' | 'pending';
 
 type BucketItem = {
@@ -107,7 +105,7 @@ export default function BucketListPage() {
           Bucket List
         </h1>
         <p className='mb-4 text-gray-400'>
-          Goals and dreams I'm working towards.
+          Goals and dreams I&apos;m working towards.
         </p>
 
         <div className='mb-10 rounded-xl bg-white/5 p-4 backdrop-blur-sm'>
@@ -127,7 +125,10 @@ export default function BucketListPage() {
 
         <div className='flex flex-col gap-3'>
           {bucketListItems.map((item) => (
-            <GlassCard key={item.id} className='p-4'>
+            <div
+              key={item.id}
+              className='rounded-xl border border-white/10 bg-white/[0.02] p-4 backdrop-blur-sm'
+            >
               <div className='flex items-start gap-4'>
                 <div className='mt-0.5'>{statusIcons[item.status]}</div>
 
@@ -150,7 +151,7 @@ export default function BucketListPage() {
                   </div>
                 </div>
               </div>
-            </GlassCard>
+            </div>
           ))}
         </div>
       </div>

@@ -1,10 +1,10 @@
 import { desc, eq } from 'drizzle-orm';
 
-import { bucketListItems as bucketListData } from '@/data/bucket-list';
-import { guestbookEntries as guestbookData } from '@/data/guestbook';
-import { posts as postsData } from '@/data/posts';
-import { projects as projectsData } from '@/data/projects';
-import { shorts as shortsData } from '@/data/shorts';
+import { bucketListItems as bucketListData } from '@/constants/bucket-list';
+import { guestbookEntries as guestbookData } from '@/constants/guestbook';
+import { posts as postsData } from '@/constants/posts';
+import { projects as projectsData } from '@/constants/projects';
+import { shorts as shortsData } from '@/constants/shorts';
 
 import { getCachedOrFetch } from '@/lib/cache';
 

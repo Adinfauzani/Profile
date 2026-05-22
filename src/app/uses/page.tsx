@@ -1,7 +1,3 @@
-'use client';
-
-import { GlassCard } from '@/components/glass/GlassCard';
-
 const hardware = [
   { item: 'MacBook Pro 14" M2 Pro', description: 'Main development machine' },
   { item: 'LG UltraWide 34"', description: 'External monitor' },
@@ -40,14 +36,17 @@ function CategorySection({
       <h2 className='mb-4 text-xl font-bold text-white'>{title}</h2>
       <div className='flex flex-col gap-3'>
         {items.map((item) => (
-          <GlassCard key={item.item} className='p-4'>
+          <div
+            key={item.item}
+            className='rounded-xl border border-white/10 bg-white/[0.02] p-4 backdrop-blur-sm'
+          >
             <div className='flex items-start justify-between gap-4'>
               <div>
                 <h3 className='font-medium text-white'>{item.item}</h3>
                 <p className='mt-1 text-sm text-gray-400'>{item.description}</p>
               </div>
             </div>
-          </GlassCard>
+          </div>
         ))}
       </div>
     </div>

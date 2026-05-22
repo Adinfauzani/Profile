@@ -1,7 +1,3 @@
-'use client';
-
-import { GlassCard } from '@/components/glass/GlassCard';
-
 const shorts = [
   {
     id: 'flexbox-mental-model',
@@ -69,7 +65,10 @@ export default function ShortsPage() {
 
       <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
         {shorts.map((short) => (
-          <GlassCard key={short.id} className='p-5'>
+          <div
+            key={short.id}
+            className='rounded-xl border border-white/10 bg-white/[0.02] p-5 backdrop-blur-sm'
+          >
             <div className='flex items-start justify-between'>
               <h3 className='text-lg font-semibold text-white'>
                 {short.title}
@@ -91,7 +90,7 @@ export default function ShortsPage() {
                 </span>
               ))}
             </div>
-          </GlassCard>
+          </div>
         ))}
       </div>
     </main>

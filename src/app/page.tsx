@@ -1,23 +1,19 @@
-import { BlogList } from '@/components/sections/BlogList';
-import { FeaturedPostsSection } from '@/components/sections/FeaturedPostsSection';
+import { CTASection } from '@/components/sections/CTASection';
+import { FeaturedBlogs } from '@/components/sections/FeaturedBlogs';
 import { FeaturedProjectsSection } from '@/components/sections/FeaturedProjectsSection';
+import { FloatingStacks } from '@/components/sections/FloatingStacks';
 import { HeroSection } from '@/components/sections/HeroSection';
-import { NewsletterSection } from '@/components/sections/NewsletterSection';
-import { RetrospectiveSection } from '@/components/sections/RetrospectiveSection';
-import { TechStack } from '@/components/sections/TechStack';
-import { TestimonialsSection } from '@/components/sections/TestimonialsSection';
+import { InteractiveBlogs } from '@/components/sections/InteractiveBlogs';
 
 export default function HomePage() {
   return (
     <>
       <HeroSection />
-      <FeaturedPostsSection />
-      <RetrospectiveSection />
       <FeaturedProjectsSection />
-      <TestimonialsSection />
-      <TechStack />
-      <BlogList />
-      <NewsletterSection />
+      <InteractiveBlogs />
+      <FeaturedBlogs />
+      <FloatingStacks />
+      <CTASection />
     </>
   );
 }

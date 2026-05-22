@@ -15,21 +15,21 @@ const posts = [
     date: '2024-03-15',
     excerpt:
       'A comprehensive guide to building modern web applications with Next.js 14 and the App Router.',
-    href: '/blog/nextjs-app-router',
+    href: '/blogs/nextjs-app-router',
   },
   {
     title: 'TypeScript Best Practices for React Developers',
     date: '2024-02-28',
     excerpt:
       'Level up your TypeScript skills with these essential patterns for React development.',
-    href: '/blog/typescript-best-practices',
+    href: '/blogs/typescript-best-practices',
   },
   {
     title: 'Building Beautiful UIs with Tailwind CSS',
     date: '2024-02-10',
     excerpt:
       'Learn how to create stunning, responsive designs using utility-first CSS.',
-    href: '/blog/tailwind-css-tips',
+    href: '/blogs/tailwind-css-tips',
   },
 ];
 
@@ -54,7 +54,7 @@ export function BlogList() {
             </p>
           </div>
           <a
-            href='/blog'
+            href='/blogs'
             className='hidden items-center gap-2 text-indigo-400 transition-colors hover:text-indigo-300 md:flex'
           >
             View all posts
@@ -105,7 +105,7 @@ export function BlogList() {
 
         <div className='mt-8 text-center md:hidden'>
           <a
-            href='/blog'
+            href='/blogs'
             className='inline-flex items-center gap-2 text-indigo-400 transition-colors hover:text-indigo-300'
           >
             View all posts

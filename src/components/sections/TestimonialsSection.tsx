@@ -2,13 +2,9 @@
 
 import { motion } from 'framer-motion';
 import { ArrowLeft, ArrowRight, Quote } from 'lucide-react';
-import Image from 'next/image';
 import { useState } from 'react';
 
 import { fadeInUp } from '@/lib/motion';
-
-import { GlassButton } from '@/components/glass/GlassButton';
-import { GlassCard } from '@/components/glass/GlassCard';
 
 const testimonials = [
   {
@@ -75,7 +71,7 @@ export function TestimonialsSection() {
               exit={{ opacity: 0, y: -20 }}
               transition={{ duration: 0.3 }}
             >
-              <GlassCard className='p-8 text-center'>
+              <div className='rounded-xl border border-white/10 bg-white/[0.02] p-8 text-center backdrop-blur-sm'>
                 <Quote
                   size={32}
                   className='mx-auto mb-6 text-indigo-400 opacity-50'
@@ -86,17 +82,14 @@ export function TestimonialsSection() {
                 </blockquote>
 
                 <div className='mt-8 flex items-center justify-center gap-3'>
-                  <Image
+                  <img
                     src={testimonials[active].avatar}
                     alt={testimonials[active].name}
-                    width={40}
-                    height={40}
-                    className='rounded-full ring-2 ring-white/10'
+                    className='h-10 w-10 rounded-full ring-2 ring-white/10'
                     onError={(e) => {
                       (e.target as HTMLImageElement).src =
                         `https://ui-avatars.com/api/?name=${testimonials[active].name}&background=6366f1&color=fff`;
                     }}
-                    unoptimized
                   />
                   <div className='text-left'>
                     <div className='font-semibold text-white'>
@@ -107,32 +100,38 @@ export function TestimonialsSection() {
                     </div>
                   </div>
                 </div>
-              </GlassCard>
+              </div>
             </motion.div>
 
             <div className='mt-6 flex items-center justify-center gap-4'>
-              <GlassButton variant='ghost' size='icon-sm' onClick={prev}>
+              <button
+                onClick={prev}
+                className='rounded-xl border border-white/10 bg-white/5 p-2 text-gray-400 backdrop-blur-sm transition-all hover:bg-white/10 hover:text-white'
+              >
                 <ArrowLeft size={18} />
-              </GlassButton>
+              </button>
 
               <div className='flex gap-2'>
                 {testimonials.map((_, i) => (
                   <button
                     key={i}
                     onClick={() => setActive(i)}
-                    className={`h-2 w-2 rounded-full transition-all ${
+                    className={`h-2 rounded-full transition-all ${
                       i === active
-                        ? 'bg-indigo-400 w-4'
-                        : 'bg-gray-600 hover:bg-gray-500'
+                        ? 'w-4 bg-indigo-400'
+                        : 'w-2 bg-gray-600 hover:bg-gray-500'
                     }`}
                     aria-label={`Go to testimonial ${i + 1}`}
                   />
                 ))}
               </div>
 
-              <GlassButton variant='ghost' size='icon-sm' onClick={next}>
+              <button
+                onClick={next}
+                className='rounded-xl border border-white/10 bg-white/5 p-2 text-gray-400 backdrop-blur-sm transition-all hover:bg-white/10 hover:text-white'
+              >
                 <ArrowRight size={18} />
-              </GlassButton>
+              </button>
             </div>
           </div>
         </motion.div>

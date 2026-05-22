@@ -1,0 +1,60 @@
+---
+title: "Git Stash Tips"
+description: "Useful git stash commands for everyday development."
+date: "2026-05-22"
+tags:
+  - git
+  - tips
+published: true
+---
+
+# Git Stash Tips
+
+Git stash is one of those commands that seems simple but has hidden depth.
+
+## Basic Stash
+
+```bash
+git stash
+```
+
+This saves your working directory and index, giving you a clean slate.
+
+## Stash with Message
+
+```bash
+git stash push -m "WIP: refactoring auth module"
+```
+
+## List Stashes
+
+```bash
+git stash list
+```
+
+## Apply Specific Stash
+
+```bash
+git stash apply stash@{2}
+```
+
+## Pop and Apply
+
+- `git stash pop` — apply and remove from stash list
+- `git stash apply` — apply but keep in stash list
+
+## Stash Untracked Files
+
+```bash
+git stash -u
+```
+
+Or include all files:
+
+```bash
+git stash --all
+```
+
+## Conclusion
+
+Git stash is a powerful tool for context switching. Master it and you'll never lose work again.

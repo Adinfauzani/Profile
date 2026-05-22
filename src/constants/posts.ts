@@ -272,4 +272,5 @@ Tailwind CSS accelerates development without sacrificing design quality.
   },
 ];
 
+export const featuredPosts = posts.slice(0, 3);
 export const postSlugs = posts.map((p) => p.slug);

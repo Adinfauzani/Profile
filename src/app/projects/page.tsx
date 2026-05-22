@@ -1,64 +1,14 @@
-'use client';
-
 import { ExternalLink } from 'lucide-react';
-import { RiGithubFill } from 'react-icons/ri';
 
-import { GlassCard } from '@/components/glass/GlassCard';
+function GithubIcon({ size = 18 }: { size?: number }) {
+  return (
+    <svg width={size} height={size} viewBox='0 0 24 24' fill='currentColor'>
+      <path d='M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z' />
+    </svg>
+  );
+}
 
-const projects = [
-  {
-    slug: 'soraku',
-    title: 'Soraku',
-    description:
-      'Anime community platform for fans to discuss, share, and track their favorite series.',
-    longDescription:
-      'Soraku is a full-featured anime community platform built with Next.js and Supabase. Users can track their watching list, write reviews, discuss in forums, and discover new anime. The platform features real-time notifications, personalized recommendations, and a robust rating system.',
-    tech: ['Next.js', 'Tailwind CSS', 'Supabase', 'TypeScript'],
-    demo: 'https://soraku.vercel.app',
-    github: 'https://github.com/adinfauzan/soraku',
-    image: 'https://images.unsplash.com/photo-1578632767115-351597cf2477?w=800',
-    featured: true,
-  },
-  {
-    slug: 'taskflow',
-    title: 'TaskFlow',
-    description:
-      'Productivity app with real-time collaboration, Kanban boards, and team management.',
-    longDescription:
-      'TaskFlow is a comprehensive project management tool that combines Kanban boards, Gantt charts, and team collaboration features. Built with React and Socket.io for real-time updates.',
-    tech: ['React', 'TypeScript', 'Node.js', 'Socket.io', 'PostgreSQL'],
-    demo: 'https://taskflow.app',
-    github: 'https://github.com/adinfauzan/taskflow',
-    image: 'https://images.unsplash.com/photo-1611224923853-80b023f02d71?w=800',
-    featured: true,
-  },
-  {
-    slug: 'ecommerce-dashboard',
-    title: 'E-Commerce Dashboard',
-    description:
-      'Analytics dashboard for online stores with revenue tracking, inventory, and customer insights.',
-    longDescription:
-      'A comprehensive analytics dashboard that helps online store owners track revenue, manage inventory, and gain insights into customer behavior. Features include real-time charts, exportable reports, and automated alerts.',
-    tech: ['Next.js', 'Prisma', 'PostgreSQL', 'Chart.js'],
-    demo: 'https://dashboard.soraku.dev',
-    github: 'https://github.com/adinfauzan/dashboard',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800',
-    featured: false,
-  },
-  {
-    slug: 'ai-chat',
-    title: 'AI Chat Interface',
-    description:
-      'Clean, minimal chat interface with streaming responses and conversation history.',
-    longDescription:
-      'A modern AI chat interface built with React and the Vercel AI SDK. Features streaming responses, conversation history, multiple AI model support, and a clean, distraction-free design.',
-    tech: ['React', 'OpenAI API', 'Vercel AI SDK', 'Tailwind CSS'],
-    demo: 'https://chat.soraku.dev',
-    github: 'https://github.com/adinfauzan/ai-chat',
-    image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800',
-    featured: false,
-  },
-];
+import { projects } from '@/constants/projects';
 
 export default function ProjectsPage() {
   return (
@@ -67,23 +17,26 @@ export default function ProjectsPage() {
         Projects
       </h1>
       <p className='mb-12 text-gray-400'>
-        A collection of projects I've built and contributed to.
+        A collection of projects I&apos;ve built and contributed to.
       </p>
 
       <div className='grid gap-6 md:grid-cols-2'>
         {projects.map((project) => (
-          <GlassCard key={project.slug} className='overflow-hidden'>
+          <div
+            key={project.slug}
+            className='group overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-indigo-500 hover:shadow-[0_0_30px_rgba(99,102,241,0.2)]'
+          >
             <div className='aspect-video w-full overflow-hidden bg-gray-800'>
               <img
                 src={project.image}
                 alt={project.title}
-                className='h-full w-full object-cover transition-transform hover:scale-105'
+                className='h-full w-full object-cover transition-transform duration-500 group-hover:scale-105'
               />
             </div>
 
             <div className='p-6'>
               <div className='flex items-start justify-between gap-4'>
-                <h2 className='text-xl font-bold text-white'>
+                <h2 className='text-xl font-bold text-white transition-colors group-hover:text-indigo-400'>
                   {project.title}
                 </h2>
                 <div className='flex gap-2'>
@@ -91,16 +44,16 @@ export default function ProjectsPage() {
                     href={project.github}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='rounded-lg p-2 text-gray-400 hover:bg-white/10 hover:text-white'
+                    className='rounded-lg p-2 text-gray-400 transition-colors hover:bg-white/10 hover:text-white'
                     aria-label='View source code'
                   >
-                    <RiGithubFill size={18} />
+                    <GithubIcon size={18} />
                   </a>
                   <a
                     href={project.demo}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='rounded-lg p-2 text-gray-400 hover:bg-white/10 hover:text-white'
+                    className='rounded-lg p-2 text-gray-400 transition-colors hover:bg-white/10 hover:text-white'
                     aria-label='View live demo'
                   >
                     <ExternalLink size={18} />
@@ -123,7 +76,7 @@ export default function ProjectsPage() {
                 ))}
               </div>
             </div>
-          </GlassCard>
+          </div>
         ))}
       </div>
     </main>

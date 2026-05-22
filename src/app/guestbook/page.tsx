@@ -3,9 +3,6 @@
 import { Send } from 'lucide-react';
 import { useState } from 'react';
 
-import { GlassButton } from '@/components/glass/GlassButton';
-import { GlassCard } from '@/components/glass/GlassCard';
-
 const guestbookEntries = [
   {
     id: 1,
@@ -85,7 +82,7 @@ export default function GuestbookPage() {
           Leave a message, say hello, or share your thoughts.
         </p>
 
-        <GlassCard className='mb-12 p-6'>
+        <div className='mb-12 rounded-xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-sm'>
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -128,16 +125,22 @@ export default function GuestbookPage() {
               />
             </div>
 
-            <GlassButton type='submit' className='self-end'>
+            <button
+              type='submit'
+              className='inline-flex items-center gap-2 self-end rounded-xl bg-indigo-600 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-indigo-500'
+            >
               <Send size={16} />
               Sign Guestbook
-            </GlassButton>
+            </button>
           </form>
-        </GlassCard>
+        </div>
 
         <div className='flex flex-col gap-4'>
           {guestbookEntries.map((entry) => (
-            <GlassCard key={entry.id} className='p-5'>
+            <div
+              key={entry.id}
+              className='rounded-xl border border-white/10 bg-white/[0.02] p-5 backdrop-blur-sm'
+            >
               <div className='flex items-start gap-3'>
                 <img
                   src={entry.avatar}
@@ -162,7 +165,7 @@ export default function GuestbookPage() {
                   <p className='mt-2 text-sm text-gray-300'>{entry.message}</p>
                 </div>
               </div>
-            </GlassCard>
+            </div>
           ))}
         </div>
       </div>

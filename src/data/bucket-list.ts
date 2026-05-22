@@ -1,0 +1,65 @@
+export const bucketListItems = [
+  {
+    id: 1,
+    title: 'Visit Japan during cherry blossom season',
+    status: 'in-progress',
+    category: 'Travel',
+  },
+  {
+    id: 2,
+    title: 'Build an open-source project with 1000+ stars',
+    status: 'completed',
+    category: 'Career',
+    completedDate: '2024-06-15',
+  },
+  {
+    id: 3,
+    title: 'Write a technical book',
+    status: 'in-progress',
+    category: 'Career',
+  },
+  {
+    id: 4,
+    title: 'Get PADI Advanced Open Water certification',
+    status: 'completed',
+    category: 'Adventure',
+    completedDate: '2024-03-20',
+  },
+  {
+    id: 5,
+    title: 'Contribute to React core library',
+    status: 'pending',
+    category: 'Career',
+  },
+  {
+    id: 6,
+    title: 'Backpack through Europe for a month',
+    status: 'pending',
+    category: 'Travel',
+  },
+  {
+    id: 7,
+    title: 'Learn to play piano',
+    status: 'in-progress',
+    category: 'Personal',
+  },
+  {
+    id: 8,
+    title: 'Speak at a major tech conference',
+    status: 'completed',
+    category: 'Career',
+    completedDate: '2024-09-10',
+  },
+  {
+    id: 9,
+    title: 'Build a profitable SaaS product',
+    status: 'pending',
+    category: 'Career',
+  },
+  {
+    id: 10,
+    title: 'Run a marathon',
+    status: 'in-progress',
+    category: 'Fitness',
+  },
+];

@@ -3,14 +3,26 @@ import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  darkMode: 'class',
   theme: {
     extend: {
       fontFamily: {
-        primary: ['Inter', ...defaultTheme.fontFamily.sans],
+        sans: ['Inter', ...defaultTheme.fontFamily.sans],
       },
       colors: {
+        background: 'hsl(var(--background))',
+        foreground: 'hsl(var(--foreground))',
+        card: {
+          DEFAULT: 'hsl(var(--card))',
+          foreground: 'hsl(var(--card-foreground))',
+        },
+        popover: {
+          DEFAULT: 'hsl(var(--popover))',
+          foreground: 'hsl(var(--popover-foreground))',
+        },
         primary: {
-          // Customize it on globals.css :root
+          DEFAULT: 'hsl(var(--primary))',
+          foreground: 'hsl(var(--primary-foreground))',
           50: 'rgb(var(--tw-color-primary-50) / <alpha-value>)',
           100: 'rgb(var(--tw-color-primary-100) / <alpha-value>)',
           200: 'rgb(var(--tw-color-primary-200) / <alpha-value>)',
@@ -23,32 +35,30 @@ export default {
           900: 'rgb(var(--tw-color-primary-900) / <alpha-value>)',
           950: 'rgb(var(--tw-color-primary-950) / <alpha-value>)',
         },
-        dark: '#222222',
-      },
-      keyframes: {
-        flicker: {
-          '0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100%': {
-            opacity: '0.99',
-            filter:
-              'drop-shadow(0 0 1px rgba(252, 211, 77)) drop-shadow(0 0 15px rgba(245, 158, 11)) drop-shadow(0 0 1px rgba(252, 211, 77))',
-          },
-          '20%, 21.999%, 63%, 63.999%, 65%, 69.999%': {
-            opacity: '0.4',
-            filter: 'none',
-          },
+        secondary: {
+          DEFAULT: 'hsl(var(--secondary))',
+          foreground: 'hsl(var(--secondary-foreground))',
         },
-        shimmer: {
-          '0%': {
-            backgroundPosition: '-700px 0',
-          },
-          '100%': {
-            backgroundPosition: '700px 0',
-          },
+        muted: {
+          DEFAULT: 'hsl(var(--muted))',
+          foreground: 'hsl(var(--muted-foreground))',
         },
+        accent: {
+          DEFAULT: 'hsl(var(--accent))',
+          foreground: 'hsl(var(--accent-foreground))',
+        },
+        destructive: {
+          DEFAULT: 'hsl(var(--destructive))',
+          foreground: 'hsl(var(--destructive-foreground))',
+        },
+        border: 'hsl(var(--border))',
+        input: 'hsl(var(--input))',
+        ring: 'hsl(var(--ring))',
       },
-      animation: {
-        flicker: 'flicker 3s linear infinite',
-        shimmer: 'shimmer 1.3s linear infinite',
+      borderRadius: {
+        lg: 'var(--radius)',
+        md: 'calc(var(--radius) - 2px)',
+        sm: 'calc(var(--radius) - 4px)',
       },
     },
   },

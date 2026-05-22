@@ -1,66 +1,10 @@
 import { format } from 'date-fns';
 
-const posts = [
-  {
-    slug: 'list-animation-motion-react',
-    title: 'List Animation using Motion for React',
-    date: '2024-12-17',
-    excerpt:
-      'An in-depth guide on how to animate enter and exit animation for list using Motion for React.',
-    category: 'React',
-    tags: ['react', 'animation'],
-    readTime: '6 min',
-  },
-  {
-    slug: 'advanced-react-patterns',
-    title: 'Advanced React Patterns',
-    date: '2024-03-03',
-    excerpt: 'List of React advanced patterns complete with examples.',
-    category: 'React',
-    tags: ['react', 'patterns'],
-    readTime: '10 min',
-  },
-  {
-    slug: 'nextjs-authentication-hoc',
-    title: 'Next.js Authentication using Higher-Order Components',
-    date: '2023-03-10',
-    excerpt: 'Solve problems such as colocation, and error-prone code.',
-    category: 'Next.js',
-    tags: ['nextjs', 'auth'],
-    readTime: '7 min',
-  },
-  {
-    slug: 'nextjs-app-router-guide',
-    title: 'Getting Started with Next.js App Router',
-    date: '2024-02-15',
-    excerpt:
-      'A comprehensive guide to building modern web applications with Next.js.',
-    category: 'Next.js',
-    tags: ['nextjs', 'app-router'],
-    readTime: '8 min',
-  },
-  {
-    slug: 'typescript-best-practices',
-    title: 'TypeScript Best Practices for React Developers',
-    date: '2024-01-28',
-    excerpt: 'Level up your TypeScript skills with these essential patterns.',
-    category: 'TypeScript',
-    tags: ['typescript', 'react'],
-    readTime: '6 min',
-  },
-  {
-    slug: 'tailwind-css-tips',
-    title: 'Building Beautiful UIs with Tailwind CSS',
-    date: '2024-01-10',
-    excerpt:
-      'Learn how to create stunning, responsive designs using utility-first CSS.',
-    category: 'CSS',
-    tags: ['tailwind', 'css'],
-    readTime: '5 min',
-  },
-];
+import { getPosts } from '@/db/queries';
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const posts = await getPosts();
+
   return (
     <main className='layout pt-32'>
       <h1 className='mb-4 text-4xl font-bold text-white md:text-5xl'>Blog</h1>

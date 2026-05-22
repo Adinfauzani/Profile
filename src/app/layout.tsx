@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google';
 
 import '../styles/globals.css';
 
+import { Analytics } from '@/components/Analytics';
 import { Footer } from '@/components/layout/Footer';
 import { Navbar } from '@/components/layout/Navbar';
 import { ThemeProvider } from '@/components/ThemeProvider';
@@ -74,6 +75,7 @@ export default function RootLayout({
           <Navbar />
           <main className='relative'>{children}</main>
           <Footer />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>

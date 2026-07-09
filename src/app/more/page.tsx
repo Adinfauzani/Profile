@@ -1,7 +1,6 @@
 import {
   ArrowRight,
   CheckCircle,
-  Circle,
   Code2,
   MessageSquare,
   Target,

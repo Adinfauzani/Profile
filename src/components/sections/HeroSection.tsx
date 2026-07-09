@@ -2,12 +2,8 @@
 
 import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
-
-import { floatingStacks } from '@/constants/stacks';
-
-import { BlurGlow } from '@/components/ui/BlurGlow';
-import { StackBadge } from '@/components/ui/StackBadge';
 
 function GithubIcon() {
   return (
@@ -56,15 +52,14 @@ const socialLinks = [
 export function HeroSection() {
   return (
     <section className='relative flex min-h-screen items-center overflow-hidden'>
-      <BlurGlow className='-top-40 -left-40 h-[500px] w-[500px]' />
-      <BlurGlow
-        className='-bottom-40 -right-40 h-[400px] w-[400px]'
-        color='bg-purple-500/8'
-      />
+      <div className='pointer-events-none absolute inset-0 -z-10'>
+        <div className='absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-indigo-500/10 blur-[150px]' />
+        <div className='absolute -bottom-40 -right-40 h-[500px] w-[500px] rounded-full bg-purple-500/8 blur-[150px]' />
+      </div>
 
       <div className='layout relative w-full'>
-        <div className='flex flex-col justify-center md:flex-row md:items-center md:gap-16'>
-          <div className='max-w-xl flex-1 pt-32 md:pt-0'>
+        <div className='flex flex-col-reverse items-center gap-8 md:flex-row md:gap-16 lg:gap-24'>
+          <div className='w-full flex-1 pt-20 md:pt-0'>
             <motion.div
               initial='hidden'
               animate='show'
@@ -78,9 +73,7 @@ export function HeroSection() {
                   show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
                 }}
                 className='mb-4 text-sm text-gray-500'
-              >
-                hello world!
-              </motion.div>
+              ></motion.div>
 
               <motion.div
                 variants={{
@@ -189,21 +182,24 @@ export function HeroSection() {
             </motion.div>
           </div>
 
-          <div className='relative mt-16 hidden h-96 w-full md:mt-0 md:block md:flex-1'>
-            {floatingStacks.map((stack, i) => {
-              const positions = [
-                { top: '10%', right: '20%' },
-                { top: '25%', right: '60%' },
-                { top: '50%', right: '30%' },
-                { top: '70%', right: '55%' },
-                { top: '85%', right: '15%' },
-              ];
-              return (
-                <div key={stack} className='absolute' style={positions[i]}>
-                  <StackBadge label={stack} index={i} />
-                </div>
-              );
-            })}
+          <div className='relative flex w-full flex-1 items-center justify-center pt-20 md:pt-0'>
+            <div
+              className='absolute flex items-center justify-center'
+              style={{ inset: '-100px' }}
+            >
+              <div className='h-[600px] w-[600px] rounded-full bg-indigo-500/15 blur-[150px] md:h-[800px] md:w-[800px]' />
+            </div>
+
+            <div className='relative z-10'>
+              <Image
+                src='/images/hero.png'
+                alt='Adin Fauzan'
+                width={500}
+                height={500}
+                className='relative h-auto w-72 object-contain sm:w-80 md:w-96 lg:w-[28rem]'
+                priority
+              />
+            </div>
           </div>
         </div>
       </div>

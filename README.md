@@ -1,122 +1,219 @@
-# Next.js + Tailwind CSS + TypeScript Starter and Boilerplate
-
 <div align="center">
-  <h2>🔋 ts-nextjs-tailwind-starter</h2>
-  <p>Next.js + Tailwind CSS + TypeScript starter packed with useful development features.</p>
-  <p>Made by <a href="https://theodorusclarence.com">Theodorus Clarence</a></p>
 
-[![GitHub Repo stars](https://img.shields.io/github/stars/theodorusclarence/ts-nextjs-tailwind-starter)](https://github.com/theodorusclarence/ts-nextjs-tailwind-starter/stargazers)
-[![Depfu](https://badges.depfu.com/badges/fc6e730632ab9dacaf7df478a08684a7/overview.svg)](https://depfu.com/github/theodorusclarence/ts-nextjs-tailwind-starter?project_id=30160)
-[![Last Update](https://img.shields.io/badge/deps%20update-every%20sunday-blue.svg)](https://shields.io/)
+<img src="https://capsule-render.vercel.app/api?type=waving&height=300&color=0:08F7FE,25:09FBD3,50:FE53BB,75:F5D300,100:00ff99&text=ADIN%20FAUZAN&fontSize=55&fontColor=ffffff&animation=fadeIn&fontAlignY=38&desc=Fullstack%20Developer&descAlignY=58"/>
+
+<img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&weight=700&size=24&pause=1000&color=08F7FE&center=true&vCenter=true&width=850&lines=⚡+Welcome+To+My+Profile;🚀+Fullstack+Developer+From+Indonesia;🎌+Building+Soraku+Ecosystem;🤖+Bot%20Discord+%7C+Anime+%7C+Future+Technology;💻+Next.js+•+Flutter+•+NestJS+"/>
+
+<p align="center">
+<img src="https://img.shields.io/badge/INDONESIAN-DEV-08F7FE?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/FULLSTACK-DEVELOPER-FE53BB?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/ANIME-LOVER-F5D300?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/SORAKU-ECOSYSTEM-00ff99?style=for-the-badge"/>
+</p>
 
 </div>
 
-## Features
+---
 
-This repository is 🔋 battery packed with:
+# 🧠 SYSTEM INFO
 
-- ⚡️ Next.js 13
-- ⚛️ React 18
-- ✨ TypeScript
-- 💨 Tailwind CSS 3 — Configured with CSS Variables to extend the **primary** color
-- 💎 Pre-built Components — Components that will **automatically adapt** with your brand color, [check here for the demo](https://tsnext-tw.thcl.dev/components)
-- 🃏 Jest — Configured for unit testing
-- 📈 Absolute Import and Path Alias — Import components using `@/` prefix
-- 📏 ESLint — Find and fix problems in your code, also will **auto sort** your imports
-- 💖 Prettier — Format your code consistently
-- 🐶 Husky & Lint Staged — Run scripts on your staged files before they are committed
-- 🤖 Conventional Commit Lint — Make sure you & your teammates follow conventional commit
-- ⏰ Release Please — Generate your changelog by activating the `release-please` workflow
-- 👷 Github Actions — Lint your code on PR
-- 🚘 Automatic Branch and Issue Autolink — Branch will be automatically created on issue **assign**, and auto linked on PR
-- 🔥 Snippets — A collection of useful snippets
-- 👀 Default Open Graph — Awesome open graph generated using [og](https://github.com/theodorusclarence/og), fork it and deploy!
-- 🗺 Site Map — Automatically generate sitemap.xml
-- 📦 Expansion Pack — Easily install common libraries, additional components, and configs
+```yaml
+Name: Adin Fauzan
+Alias: Riu
+Role: Fullstack Developer
+Location: Indonesia 🇮🇩
 
-See the 👉 [feature details and changelog](https://github.com/theodorusclarence/ts-nextjs-tailwind-starter/blob/main/CHANGELOG.md) 👈 for more.
-
-You can also check all of the **details and demos** on my blog post:
-
-- [One-stop Starter to Maximize Efficiency on Next.js & Tailwind CSS Projects](https://theodorusclarence.com/blog/one-stop-starter)
-
-## Getting Started
-
-### 1. Clone this template using one of the three ways:
-
-1. Use this repository as template
-
-   **Disclosure:** by using this repository as a template, there will be an attribution on your repository.
-
-   I'll appreciate if you do, so this template can be known by others too 😄
-
-   ![Use as template](https://user-images.githubusercontent.com/55318172/129183039-1a61e68d-dd90-4548-9489-7b3ccbb35810.png)
-
-2. Using `create-next-app`
-
-   ```bash
-   npx create-next-app -e https://github.com/theodorusclarence/ts-nextjs-tailwind-starter project-name
-   ```
-
-3. Using `degit`
-
-   ```bash
-   npx degit theodorusclarence/ts-nextjs-tailwind-starter YOUR_APP_NAME
-   ```
-
-4. Deploy to Vercel
-
-   [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Ftheodorusclarence%2Fts-nextjs-tailwind-starter)
-
-### 2. Install dependencies
-
-It is encouraged to use **yarn** so the husky hooks can work properly.
-
-```bash
-yarn install
+Focus:
+  - Web Development
+  - Mobile App Development
+  - AI Integration
+  - Anime Streaming Platform
+  - Modern UI/UX
+  - Backend Architecture
 ```
 
-### 3. Run the development server
+---
 
-You can start the server using this command:
+### ⚡ TECH ARSENAL
 
-```bash
-yarn dev
-```
+<div align="center">
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result. You can start editing the page by modifying `src/pages/index.tsx`.
+<img src="https://skillicons.dev/icons?i=html,css,sass,js,ts,react,nextjs,vite,tailwind,nodejs,nestjs,express,bun,flutter,dart,firebase,supabase,mysql,postgres,mongodb,redis,prisma,docker,git,github,linux,figma,vscode&perline=9"/>
 
-### 4. Change defaults
+</div>
 
-There are some things you need to change including title, urls, favicons, etc.
+### 🚀 FRONTEND DEVELOPMENT
 
-Find all comments with !STARTERCONF, then follow the guide.
+<div align="center">
 
-Don't forget to change the package name in package.json
+<img src="https://skillicons.dev/icons?i=html,css,sass,js,ts,react,nextjs,vite,tailwind"/>
 
-### 5. Commit Message Convention
+</div>
 
-This starter is using [conventional commits](https://www.conventionalcommits.org/en/v1.0.0/), it is mandatory to use it to commit changes.
+### ⚙️ BACKEND DEVELOPMENT
 
-## Projects using ts-nextjs-tailwind-starter
+<div align="center">
 
-<!--
-TEMPLATE
-- [sitename](https://sitelink.com) ([Source](https://github.com/githublink))
-- [sitename](https://sitelink.com)
--->
+<img src="https://skillicons.dev/icons?i=nodejs,nestjs,express,bun"/>
 
-- [theodorusclarence.com](https://theodorusclarence.com) ([Source](https://github.com/theodorusclarence/theodorusclarence.com))
-- [Notiolink](https://notiolink.thcl.dev/) ([Source](https://github.com/theodorusclarence/notiolink))
+</div>
 
-Are you using this starter? Please add your page (and repo) to the end of the list via a [Pull Request](https://github.com/theodorusclarence/ts-nextjs-tailwind-starter/edit/main/README.md). 😃
+### 📱 MOBILE DEVELOPMENT
 
-## Expansion Pack 📦
+<div align="center">
 
-This starter is now equipped with an [expansion pack](https://github.com/theodorusclarence/expansion-pack).
+<img src="https://skillicons.dev/icons?i=flutter,dart,firebase,supabase"/>
 
-You can easily add expansion such as React Hook Form + Components, Storybook, and more just using a single command line.
+</div>
 
-https://user-images.githubusercontent.com/55318172/146631994-e1cac137-1664-4cfe-950b-a96decc1eaa6.mp4
+### 🗄️ DATABASE
 
-Check out the [expansion pack repository](https://github.com/theodorusclarence/expansion-pack) for the commands
+<div align="center">
+
+<img src="https://skillicons.dev/icons?i=mysql,postgres,mongodb,redis"/>
+
+</div>
+
+### ☁️ DEVOPS & CLOUD
+
+<div align="center">
+
+<img src="https://skillicons.dev/icons?i=docker,git,github,cloudflare,linux,vercel"/>
+
+</div>
+
+### 🎨 UI / UX
+
+<div align="center">
+
+<img src="https://skillicons.dev/icons?i=figma,ps,ai"/>
+
+</div>
+
+### 🌌 CURRENT MISSION
+
+<div align="center">
+
+<img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&weight=700&size=22&pause=1000&color=08F7FE&center=true&vCenter=true&width=700&lines=⚡+Initializing+Cyberpunk+Mission...;🚀+Building+Soraku+Ecosystem;🎬+Developing+Anime+Streaming+Platform;🤖+Integrating+Next+Generation+AI;📱+Crafting+Modern+Flutter+Applications;🌐+Creating+The+Future+Of+Digital+Media"/>
+
+<br/>
+
+<table>
+<tr>
+<td align="center" width="50%">
+
+### 🚀 Soraku Ecosystem
+
+Modern digital ecosystem platform  
+focused on anime, media, and community.
+
+</td>
+
+<td align="center" width="50%">
+
+### 🎬 Anime Streaming
+
+Building scalable anime streaming  
+platform with modern architecture.
+
+</td>
+</tr>
+
+<tr>
+<td align="center" width="50%">
+
+### 🤖 AI Integration
+
+Developing AI recommendation system  
+for smarter user experience.
+
+</td>
+
+<td align="center" width="50%">
+
+### 📱 Flutter Development
+
+Creating cross-platform mobile apps  
+with modern clean UI.
+
+</td>
+</tr>
+</table>
+
+<br/>
+
+<img src="https://img.shields.io/badge/STATUS-ACTIVE-08F7FE?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/MODE-ERROR-FE53BB?style=for-the-badge"/>
+<img src="https://img.shields.io/badge/FOCUS-FULLSTACK-F5D300?style=for-the-badge"/>
+
+</div>
+
+### 🎧 SPOTIFY STATUS
+
+<div align="center">
+
+<a href="https://open.spotify.com/user/31mkyzow45mnwk4a33vsb2m4rg7i">
+
+<img src="https://spotify-recently-played-readme.vercel.app/api?user=31mkyzow45mnwk4a33vsb2m4rg7i&count=1&width=540"/>
+
+</a>
+
+</div>
+
+### 📊 GITHUB ANALYTICS
+
+<p align="center">
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Adinfauzani&theme=tokyonight" />
+</p>
+
+<p align="center">
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=Adinfauzani&theme=tokyonight" />
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=Adinfauzani&theme=tokyonight" />
+</p>
+
+<p align="center">
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/stats?username=Adinfauzani&theme=tokyonight" />
+  <img src="https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=Adinfauzani&theme=tokyonight&utcOffset=7" />
+</p>
+
+### 🌐 CONNECT WITH ME
+
+<div align="center">
+
+<a href="https://github.com/Adinfauzani">
+<img src="https://img.shields.io/badge/GitHub-0D1117?style=for-the-badge&logo=github&logoColor=08F7FE"/>
+</a>
+
+<a href="https://discord.gg/soraku">
+<img src="https://img.shields.io/badge/Discord-111827?style=for-the-badge&logo=discord&logoColor=5865F2"/>
+</a>
+
+<a href="https://www.soraku.id">
+<img src="https://img.shields.io/badge/Soraku-000000?style=for-the-badge&logo=vercel&logoColor=00ff99"/>
+</a>
+
+<a href="https://www.soraku.live">
+<img src="https://img.shields.io/badge/Streaming-FE53BB?style=for-the-badge&logo=googleplay&logoColor=white"/>
+</a>
+
+</div>
+
+### 👀 PROFILE VIEWS
+
+<div align="center">
+
+<img src="https://komarev.com/ghpvc/?username=Adinfauzan&style=for-the-badge&color=blueviolet"/>
+
+</div>
+
+---
+
+<div align="center">
+
+<img src="https://capsule-render.vercel.app/api?type=waving&height=180&section=footer&color=0:08F7FE,25:09FBD3,50:FE53BB,75:F5D300,100:00ff99"/>
+
+# ⚡ CODE THE FUTURE
+
+### 「 Build • Innovate • Dominate 」
+
+</div>

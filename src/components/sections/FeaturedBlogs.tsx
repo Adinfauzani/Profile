@@ -25,8 +25,8 @@ export function FeaturedBlogs() {
               href={`/blogs/${post.slug}`}
               className='group rounded-xl border border-white/10 bg-white/[0.02] p-6 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-white/5'
             >
-              <div className='flex items-center gap-2 text-xs text-gray-500'>
-                <span className='rounded-full bg-white/10 px-2 py-0.5 text-indigo-400'>
+              <div className='font-mono flex items-center gap-2 text-xs text-gray-500'>
+                <span className='rounded-full bg-white/10 px-2 py-0.5 font-mono text-indigo-400'>
                   {post.category}
                 </span>
                 <span>•</span>

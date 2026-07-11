@@ -55,44 +55,100 @@ const shorts = [
   },
 ];
 
+const totalViews = shorts.reduce((sum, s) => sum + s.views, 0);
+const uniqueTags = [...new Set(shorts.flatMap((s) => s.tags))];
+
 export default function ShortsPage() {
   return (
-    <main className='layout pt-32'>
-      <h1 className='mb-4 text-4xl font-bold text-white md:text-5xl'>Shorts</h1>
-      <p className='mb-12 text-gray-400'>
-        Quick tips and mental models for developers.
-      </p>
+    <div className='min-h-screen'>
+      <div className='mx-auto max-w-[860px] px-6 pt-32 pb-24'>
+        <h1 className='text-4xl md:text-5xl font-bold text-white tracking-tight'>
+          Statik Web
+        </h1>
+        <p className='mt-3 text-[15px] text-gray-400 leading-relaxed max-w-md'>
+          Quick snippets, mental models, and dev statistics at a glance.
+        </p>
 
-      <div className='grid gap-4 md:grid-cols-2 lg:grid-cols-3'>
-        {shorts.map((short) => (
-          <div
-            key={short.id}
-            className='rounded-xl border border-white/10 bg-white/[0.02] p-5 backdrop-blur-sm'
-          >
-            <div className='flex items-start justify-between'>
-              <h3 className='text-lg font-semibold text-white'>
-                {short.title}
-              </h3>
-              <span className='text-xs text-gray-500'>
-                {short.views.toLocaleString()} views
-              </span>
+        {/* Summary Cards */}
+        <div className='mt-10 grid grid-cols-3 gap-3 md:gap-4'>
+          {[
+            { label: 'Snippets', value: shorts.length },
+            { label: 'Total Views', value: totalViews.toLocaleString() },
+            { label: 'Topics', value: uniqueTags.length },
+          ].map((stat) => (
+            <div
+              key={stat.label}
+              className='rounded-2xl border border-white/[0.06] bg-white/[0.02] p-4 md:p-5 text-center'
+            >
+              <div className='text-2xl md:text-3xl font-bold text-white tracking-tight'>
+                {stat.value}
+              </div>
+              <div className='mt-1 text-[12px] font-mono text-gray-500'>
+                {stat.label}
+              </div>
             </div>
+          ))}
+        </div>
 
-            <p className='mt-3 text-sm text-gray-400'>{short.content}</p>
-
-            <div className='mt-4 flex flex-wrap gap-2'>
-              {short.tags.map((tag) => (
-                <span
-                  key={tag}
-                  className='rounded-full bg-white/10 px-2 py-0.5 text-xs text-gray-400'
-                >
-                  {tag}
-                </span>
-              ))}
-            </div>
+        {/* Table Header */}
+        <div className='mt-12'>
+          <div className='hidden md:grid grid-cols-12 gap-4 px-5 py-3 text-[11px] font-mono text-gray-600 tracking-[0.1em] uppercase border-b border-white/[0.06]'>
+            <div className='col-span-5'>Title</div>
+            <div className='col-span-3'>Topics</div>
+            <div className='col-span-2 text-right'>Views</div>
+            <div className='col-span-2 text-right'>Date</div>
           </div>
-        ))}
+
+          <div className='divide-y divide-white/[0.04]'>
+            {shorts.map((short) => (
+              <div
+                key={short.id}
+                className='grid md:grid-cols-12 gap-2 md:gap-4 px-5 py-4 hover:bg-white/[0.02] transition-colors duration-200 rounded-lg'
+              >
+                <div className='md:col-span-5'>
+                  <p className='text-sm font-medium text-white leading-snug'>
+                    {short.title}
+                  </p>
+                </div>
+                <div className='md:col-span-3 flex flex-wrap gap-1.5 items-start'>
+                  {short.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className='text-[11px] font-mono text-gray-500 px-2 py-0.5 rounded-full border border-white/[0.06]'
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <div className='md:col-span-2 flex items-center justify-start md:justify-end gap-1.5'>
+                  <svg
+                    width='12'
+                    height='12'
+                    viewBox='0 0 24 24'
+                    fill='none'
+                    stroke='currentColor'
+                    strokeWidth='2'
+                    className='text-gray-600 shrink-0'
+                  >
+                    <path d='M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z' />
+                    <circle cx='12' cy='12' r='3' />
+                  </svg>
+                  <span className='text-sm text-gray-400 font-mono'>
+                    {short.views.toLocaleString()}
+                  </span>
+                </div>
+                <div className='md:col-span-2 text-sm text-gray-500 font-mono text-left md:text-right'>
+                  {new Date(short.date).toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric',
+                  })}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-    </main>
+    </div>
   );
 }

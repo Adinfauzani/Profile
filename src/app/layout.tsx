@@ -6,7 +6,7 @@ import '../styles/animations.css';
 import { Analytics } from '@/components/Analytics';
 import { Footer } from '@/components/layout/Footer';
 import { Navbar } from '@/components/layout/Navbar';
-import { dancingScript, plusJakartaSans } from '@/lib/fonts';
+import { dancingScript, geistMono, geistSans, inter } from '@/lib/fonts';
 
 export const metadata: Metadata = {
   title: 'Adin Fauzan | Fullstack Developer',
@@ -56,10 +56,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang='en'>
-      <body
-        className={`${plusJakartaSans.variable} ${dancingScript.variable} bg-black text-white selection:bg-indigo-500/30 selection:text-indigo-300`}
-      >
+    <html
+      lang='en'
+      className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${dancingScript.variable}`}
+    >
+      <body className='bg-black text-white selection:bg-indigo-500/30 selection:text-indigo-300'>
         <Navbar />
         <main className='relative'>{children}</main>
         <Footer />

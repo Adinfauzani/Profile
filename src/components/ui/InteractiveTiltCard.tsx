@@ -71,15 +71,14 @@ export function InteractiveTiltCard({
         }}
         transition={{ type: 'spring', stiffness: 150, damping: 20 }}
         className={cn(
-          'relative overflow-hidden rounded-3xl border border-white/10 bg-white/[0.03] p-8 backdrop-blur-xl',
-          'transition-all duration-300',
-          'hover:border-indigo-500/40',
+          'relative overflow-hidden card-pixel bg-white/[0.03] p-8',
+          'transition-all duration-100',
           className,
         )}
         style={{
           transformStyle: 'preserve-3d',
           boxShadow: isHovered
-            ? `0 0 40px rgba(99,102,241,0.15), inset 0 1px 0 rgba(255,255,255,0.05)`
+            ? `2px 2px 0px 0px rgba(99,102,241,0.3), inset 0 1px 0 rgba(255,255,255,0.05)`
             : 'inset 0 1px 0 rgba(255,255,255,0.05)',
         }}
       >

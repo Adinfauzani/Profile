@@ -1,7 +1,17 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  turbopack: {},
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+    ],
+  },
+  turbopack: {
+    root: '/home/riu/Projects/Monorepo/profile',
+  },
 
   webpack(config) {
     config.module.rules.push({

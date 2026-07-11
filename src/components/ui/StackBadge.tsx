@@ -10,7 +10,7 @@ interface StackBadgeProps {
 export function StackBadge({ label, index = 0 }: StackBadgeProps) {
   return (
     <motion.span
-      className='inline-block rounded-full border border-white/10 bg-black/60 px-4 py-2 text-xs font-medium text-gray-300 backdrop-blur-sm'
+      className='font-mono inline-block rounded-full border border-white/10 bg-black/60 px-4 py-2 text-xs font-medium text-gray-300 backdrop-blur-sm'
       initial={{ opacity: 0, scale: 0.8 }}
       animate={{
         opacity: [0.6, 1, 0.6],

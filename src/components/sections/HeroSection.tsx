@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, File } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 
@@ -39,19 +39,52 @@ function MailIcon() {
   );
 }
 
+function InstagramIcon() {
+  return (
+    <svg
+      width='18'
+      height='18'
+      viewBox='0 0 24 24'
+      fill='none'
+      stroke='currentColor'
+      strokeWidth='2'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    >
+      <rect width='20' height='20' x='2' y='2' rx='5' ry='5' />
+      <path d='M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z' />
+      <line x1='17.5' y1='6.5' x2='17.51' y2='6.5' />
+    </svg>
+  );
+}
+
+function TwitterIcon() {
+  return (
+    <svg width='18' height='18' viewBox='0 0 24 24' fill='currentColor'>
+      <path d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z' />
+    </svg>
+  );
+}
+
 const socialLinks = [
-  { href: 'https://github.com/adinfauzan', icon: GithubIcon, label: 'GitHub' },
+  { href: 'https://github.com/adinfauzani', icon: GithubIcon, label: 'GitHub' },
   {
-    href: 'https://linkedin.com/in/adinfauzan',
+    href: 'https://linkedin.com/in/adinfauzani',
     icon: LinkedinIcon,
     label: 'LinkedIn',
   },
   { href: 'mailto:hello@adinfauzan.dev', icon: MailIcon, label: 'Email' },
+  {
+    href: 'https://instagram.com/adinfauzani',
+    icon: InstagramIcon,
+    label: 'Instagram',
+  },
+  { href: 'https://x.com/adinfauzani', icon: TwitterIcon, label: 'Twitter' },
 ];
 
 export function HeroSection() {
   return (
-    <section className='relative flex min-h-screen items-center overflow-hidden'>
+    <section className='relative flex min-h-[60vh] items-start md:min-h-screen md:items-center overflow-hidden'>
       <div className='pointer-events-none absolute inset-0 -z-10'>
         <div className='absolute -left-40 -top-40 h-[500px] w-[500px] rounded-full bg-indigo-500/10 blur-[150px]' />
         <div className='absolute -bottom-40 -right-40 h-[500px] w-[500px] rounded-full bg-purple-500/8 blur-[150px]' />
@@ -59,7 +92,7 @@ export function HeroSection() {
 
       <div className='layout relative w-full'>
         <div className='flex flex-col-reverse items-center gap-8 md:flex-row md:gap-16 lg:gap-24'>
-          <div className='w-full flex-1 pt-20 md:pt-0'>
+          <div className='w-full flex-1 pt-24 md:pt-0'>
             <motion.div
               initial='hidden'
               animate='show'
@@ -86,7 +119,9 @@ export function HeroSection() {
                   <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75' />
                   <span className='relative inline-flex h-2 w-2 rounded-full bg-emerald-500' />
                 </span>
-                <span className='text-xs text-gray-400'>Open for Work</span>
+                <span className='font-mono text-xs text-gray-400'>
+                  Open for Work
+                </span>
               </motion.div>
 
               <motion.h1
@@ -98,22 +133,6 @@ export function HeroSection() {
               >
                 Adin Fauzan
               </motion.h1>
-
-              <motion.p
-                variants={{
-                  hidden: { opacity: 0, y: 20 },
-                  show: {
-                    opacity: 1,
-                    y: 0,
-                    transition: { duration: 0.6, delay: 0.1 },
-                  },
-                }}
-                className='mt-4 max-w-xl text-lg leading-relaxed text-gray-400 sm:text-xl'
-              >
-                Fullstack Developer crafting scalable
-                <br />
-                and modern web experiences.
-              </motion.p>
 
               <motion.p
                 variants={{
@@ -143,14 +162,14 @@ export function HeroSection() {
               >
                 <Link
                   href='/projects'
-                  className='inline-flex items-center gap-2 rounded-full bg-indigo-600 px-5 py-2.5 text-sm font-medium text-white transition-all hover:bg-indigo-500'
+                  className='btn-pixel-primary font-mono inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-white'
                 >
                   View Projects
                   <ArrowUpRight size={16} />
                 </Link>
                 <Link
                   href='/about'
-                  className='inline-flex items-center gap-2 rounded-full border border-white/20 px-5 py-2.5 text-sm font-medium text-gray-300 transition-all hover:border-white/40 hover:text-white'
+                  className='btn-pixel font-mono inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium text-gray-300'
                 >
                   Contact Me
                 </Link>
@@ -178,11 +197,21 @@ export function HeroSection() {
                     <s.icon />
                   </a>
                 ))}
+                <span className='text-gray-600 text-sm'>|</span>
+                <a
+                  href='/resume.pdf'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  className='inline-flex items-center gap-1.5 text-sm text-gray-500 transition-colors hover:text-white'
+                >
+                  <File size={16} />
+                  Resume
+                </a>
               </motion.div>
             </motion.div>
           </div>
 
-          <div className='relative flex w-full flex-1 items-center justify-center pt-20 md:pt-0'>
+          <div className='relative hidden w-full flex-1 items-center justify-center pt-20 md:flex md:pt-12'>
             <div
               className='absolute flex items-center justify-center'
               style={{ inset: '-100px' }}
@@ -196,7 +225,7 @@ export function HeroSection() {
                 alt='Adin Fauzan'
                 width={500}
                 height={500}
-                className='relative h-auto w-72 object-contain sm:w-80 md:w-96 lg:w-[28rem]'
+                className='relative h-auto w-80 object-contain sm:w-96 md:w-[28rem] lg:w-[32rem]'
                 priority
               />
             </div>

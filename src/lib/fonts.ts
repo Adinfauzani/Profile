@@ -1,8 +1,20 @@
-import { Dancing_Script, Plus_Jakarta_Sans } from 'next/font/google';
+import { Dancing_Script, Geist, Geist_Mono, Inter } from 'next/font/google';
 
-export const plusJakartaSans = Plus_Jakarta_Sans({
+export const geistSans = Geist({
   subsets: ['latin'],
-  variable: '--font-plus-jakarta-sans',
+  variable: '--font-geist-sans',
+  display: 'swap',
+});
+
+export const geistMono = Geist_Mono({
+  subsets: ['latin'],
+  variable: '--font-geist-mono',
+  display: 'swap',
+});
+
+export const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
   display: 'swap',
 });
 

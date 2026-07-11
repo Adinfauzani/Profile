@@ -1,17 +1,8 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import {
-  BookOpen,
-  FileText,
-  FolderGit2,
-  Home,
-  Menu,
-  MessageCircle,
-  MoreHorizontal,
-  User,
-  X,
-} from 'lucide-react';
+import { FileText, Globe, Laptop, Menu, X } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useCallback, useEffect, useRef, useState } from 'react';
@@ -19,102 +10,64 @@ import { cn } from '@/lib/utils';
 
 import { MobileMenu } from './MobileMenu';
 
-function GithubIcon() {
-  return (
-    <svg width='15' height='15' viewBox='0 0 24 24' fill='currentColor'>
-      <path d='M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z' />
-    </svg>
-  );
-}
-
-function LinkedinIcon() {
-  return (
-    <svg width='15' height='15' viewBox='0 0 24 24' fill='currentColor'>
-      <path d='M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z' />
-    </svg>
-  );
-}
-
-function MailIcon() {
-  return (
-    <svg
-      width='15'
-      height='15'
-      viewBox='0 0 24 24'
-      fill='none'
-      stroke='currentColor'
-      strokeWidth='2'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    >
-      <rect width='20' height='16' x='2' y='4' rx='2' />
-      <path d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7' />
-    </svg>
-  );
-}
-
 const navItems = [
-  { href: '/', label: 'Home', icon: Home },
-  { href: '/about', label: 'About', icon: User },
-  { href: '/blogs', label: 'Blogs', icon: FileText },
-  { href: '/projects', label: 'Projects', icon: FolderGit2 },
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/blogs', label: 'Blogs' },
+  { href: '/projects', label: 'Projects' },
 ];
 
 const largeCards = [
   {
     title: 'Digital Lab',
     subtitle: 'Workspace',
-    href: '/uses',
+    href: '/labs',
     gradient: 'from-slate-900 via-blue-950 to-slate-900',
     glow: 'rgba(79,163,209,0.25)',
+    image: '/images/cards/digilab.jpg',
   },
   {
-    title: 'Soraku',
-    subtitle: "Projects I'm building",
-    href: '/projects',
+    title: 'Guest Book',
+    subtitle: 'Leave me a message',
+    href: '/guestbook',
     gradient: 'from-slate-900 via-purple-950 to-slate-900',
     glow: 'rgba(168,85,247,0.25)',
+    image: '/images/Guest.webp',
   },
   {
     title: 'Roadmap',
     subtitle: 'Current vision',
-    href: '/about',
+    href: '/roadmap',
     gradient: 'from-slate-900 via-amber-950 to-slate-900',
     glow: 'rgba(245,158,11,0.25)',
+    image: '/images/cards/roadmap.jpg',
   },
 ];
 
-const compactCards = [
+const rightCards = [
   {
-    title: 'Blog',
-    subtitle: 'Latest Posts',
-    icon: BookOpen,
-    href: '/blogs',
-    accent: 'text-blue-400',
+    title: 'Statik Web',
+    subtitle: 'Quick snippets',
+    href: '/shorts',
+    icon: Globe,
+    gradient: 'from-cyan-950/20 via-slate-900/10 to-slate-900',
+    glow: 'rgba(79,163,209,0.15)',
   },
   {
-    title: 'Guestbook',
-    subtitle: 'Leave message',
-    icon: MessageCircle,
-    href: '/guestbook',
-    accent: 'text-purple-400',
+    title: 'Uses',
+    subtitle: 'My workspace',
+    href: '/uses',
+    icon: Laptop,
+    gradient: 'from-blue-950/20 via-slate-900/10 to-slate-900',
+    glow: 'rgba(79,163,209,0.15)',
   },
   {
-    title: 'Contact',
-    subtitle: "Let's build",
-    icon: MailIcon,
-    href: 'mailto:hello@adinfauzan.dev',
-    accent: 'text-green-400',
-  },
-];
-
-const rightButtons = [
-  { href: 'mailto:hello@adinfauzan.dev', icon: MailIcon, label: 'Email' },
-  { href: 'https://github.com/adinfauzan', icon: GithubIcon, label: 'GitHub' },
-  {
-    href: 'https://linkedin.com/in/adinfauzan',
-    icon: LinkedinIcon,
-    label: 'LinkedIn',
+    title: 'Short',
+    subtitle: 'Quick reads',
+    href: '/shorts',
+    icon: FileText,
+    gradient: 'from-purple-950/15 via-slate-900/10 to-slate-900',
+    glow: 'rgba(79,163,209,0.15)',
   },
 ];
 
@@ -123,11 +76,23 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [moreOpen, setMoreOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const moreTimeoutRef = useRef<number | undefined>(undefined);
+  const [isVisible, setIsVisible] = useState(true);
   const panelRef = useRef<HTMLDivElement>(null);
+  const lastScrollY = useRef(0);
 
   const handleScroll = useCallback(() => {
-    setScrolled(window.scrollY > 20);
+    const currentScrollY = window.scrollY;
+
+    setScrolled(currentScrollY > 20);
+
+    // Hide navbar when scrolling down, show when scrolling up
+    if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+      setIsVisible(false);
+    } else {
+      setIsVisible(true);
+    }
+
+    lastScrollY.current = currentScrollY;
   }, []);
 
   useEffect(() => {
@@ -135,26 +100,18 @@ export function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, [handleScroll]);
 
-  const isMoreActive = [...largeCards, ...compactCards].some(
+  const isMoreActive = [...largeCards, ...rightCards].some(
     (l) => 'href' in l && pathname === l.href,
   );
 
-  const handleMouseEnter = () => {
-    if (moreTimeoutRef.current) clearTimeout(moreTimeoutRef.current);
-    setMoreOpen(true);
-  };
-
-  const handleMouseLeave = () => {
-    moreTimeoutRef.current = window.setTimeout(() => setMoreOpen(false), 150);
-  };
-
   return (
-    <nav className='fixed left-0 right-0 top-0 z-50 flex justify-center px-4 pt-4'>
-      <div
-        className='relative w-fit'
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
+    <motion.nav
+      className='fixed left-0 right-0 top-0 z-50 flex justify-center px-4 pt-4'
+      initial={{ y: 0 }}
+      animate={{ y: isVisible ? 0 : -120 }}
+      transition={{ duration: 0.3, ease: 'easeInOut' }}
+    >
+      <div className='relative w-fit'>
         <motion.div
           className={cn(
             'mx-auto flex w-auto items-center rounded-full border border-white/10 bg-black/40 backdrop-blur-xl transition-all duration-500',
@@ -165,20 +122,19 @@ export function Navbar() {
           }}
         >
           <div className='hidden items-center md:flex'>
-            {navItems.map(({ href, label, icon: Icon }) => {
+            {navItems.map(({ href, label }) => {
               const isActive = pathname === href;
               return (
                 <Link
                   key={href}
                   href={href}
                   className={cn(
-                    'inline-flex items-center gap-1.5 px-4 py-1 text-sm font-medium transition-colors',
+                    'inline-flex items-center gap-1.5 px-4 py-1 text-sm font-mono font-medium transition-colors',
                     isActive
                       ? 'text-blue-400'
                       : 'text-[#a3a3a3] hover:text-white',
                   )}
                 >
-                  <Icon size={14} />
                   {label}
                 </Link>
               );
@@ -186,41 +142,17 @@ export function Navbar() {
 
             <div className='relative'>
               <button
+                onClick={() => setMoreOpen(!moreOpen)}
                 className={cn(
-                  'inline-flex items-center gap-1.5 px-4 py-1 text-sm font-medium transition-colors',
+                  'inline-flex items-center gap-1.5 px-4 py-1 text-sm font-mono font-medium transition-colors',
                   isMoreActive || moreOpen
                     ? 'text-blue-400'
                     : 'text-[#a3a3a3] hover:text-white',
                 )}
               >
-                <MoreHorizontal size={14} />
                 More
               </button>
             </div>
-          </div>
-
-          <div className='mx-3 h-4 w-px bg-[#525252] hidden md:block' />
-
-          <div className='hidden items-center gap-3 pr-4 md:flex'>
-            {rightButtons.map((btn) => {
-              const Icon = btn.icon;
-              return (
-                <a
-                  key={btn.label}
-                  href={btn.href}
-                  target={btn.href.startsWith('http') ? '_blank' : undefined}
-                  rel={
-                    btn.href.startsWith('http')
-                      ? 'noopener noreferrer'
-                      : undefined
-                  }
-                  className='text-gray-500 transition-colors hover:text-white'
-                  aria-label={btn.label}
-                >
-                  <Icon />
-                </a>
-              );
-            })}
           </div>
 
           <button
@@ -240,7 +172,7 @@ export function Navbar() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}
             transition={{ duration: 0.2, ease: 'easeOut' }}
-            className='absolute left-0 right-0 top-full mt-3 rounded-2xl border p-6 shadow-lg'
+            className='absolute left-1/2 top-full mt-3 w-[800px] -translate-x-1/2 rounded-2xl border px-4 pb-4 pt-4 shadow-lg'
             style={{
               backgroundColor: 'rgba(10,10,10,.82)',
               backdropFilter: 'blur(20px)',
@@ -249,11 +181,11 @@ export function Navbar() {
             }}
           >
             <div
-              className='grid gap-6'
+              className='grid gap-2'
               style={{ gridTemplateColumns: '2.8fr 1fr' }}
             >
               <div
-                className='grid gap-4'
+                className='grid gap-2'
                 style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}
               >
                 {largeCards.map((card) => (
@@ -261,11 +193,11 @@ export function Navbar() {
                     key={card.title}
                     href={card.href}
                     onClick={() => setMoreOpen(false)}
-                    className='group'
+                    className='group min-w-0'
                   >
                     <div
                       className={cn(
-                        'relative flex h-[200px] items-end justify-start overflow-hidden rounded-2xl border border-white/[0.06] pb-4 pl-4',
+                        'relative flex aspect-square items-end justify-start overflow-hidden rounded-2xl border border-white/[0.06] pb-4 pl-4',
                         'hover:-translate-y-0.5',
                       )}
                       style={{
@@ -279,18 +211,24 @@ export function Navbar() {
                         e.currentTarget.style.boxShadow = `0 0 0 0 transparent`;
                       }}
                     >
+                      {card.image && (
+                        <Image
+                          src={card.image}
+                          alt={card.title}
+                          fill
+                          className='absolute inset-0 object-cover'
+                          sizes='(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw'
+                        />
+                      )}
                       <div
-                        className={cn(
-                          'absolute inset-0 bg-gradient-to-br transition-opacity duration-300 group-hover:opacity-80',
-                          card.gradient,
-                        )}
+                        className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent'
+                        style={{ backdropFilter: 'blur(1px)' }}
                       />
-                      <div className='absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent' />
                       <div className='relative flex flex-col items-start px-0 text-left'>
-                        <h3 className='text-xs font-semibold text-white transition-transform duration-300 group-hover:-translate-y-0.5'>
+                        <h3 className='font-mono text-xs font-semibold text-white transition-transform duration-300 group-hover:-translate-y-0.5 drop-shadow-md'>
                           {card.title}
                         </h3>
-                        <p className='text-[9px] text-gray-400'>
+                        <p className='font-mono text-[9px] text-gray-300 drop-shadow-md'>
                           {card.subtitle}
                         </p>
                       </div>
@@ -299,35 +237,62 @@ export function Navbar() {
                 ))}
               </div>
 
-              <div className='flex flex-col gap-2'>
-                {compactCards.map((card) => {
+              <div className='flex flex-col items-start justify-start gap-1.5 pr-0'>
+                {rightCards.map((card) => {
                   const Icon = card.icon;
                   return (
                     <Link
                       key={card.title}
                       href={card.href}
                       onClick={() => setMoreOpen(false)}
-                      target={
-                        card.href.startsWith('http') ? '_blank' : undefined
-                      }
-                      rel={
-                        card.href.startsWith('http')
-                          ? 'noopener noreferrer'
-                          : undefined
-                      }
-                      className='group flex items-center gap-3 rounded-xl border border-transparent px-3 transition-all duration-200 hover:border-white/[0.06] hover:bg-white/[0.03]'
-                      style={{ height: '60px' }}
+                      className='group w-full'
+                      style={{ minWidth: '160px' }}
                     >
-                      <div className='flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-white/[0.06]'>
-                        <Icon size={16} className={card.accent} />
-                      </div>
-                      <div className='min-w-0'>
-                        <h4 className='text-sm font-medium text-white transition-transform duration-200 group-hover:-translate-y-0.5'>
-                          {card.title}
-                        </h4>
-                        <p className='truncate text-xs text-gray-500'>
-                          {card.subtitle}
-                        </p>
+                      <div
+                        className={cn(
+                          'relative flex w-full items-center justify-start overflow-hidden rounded-xl border border-white/[0.06] px-4',
+                          'hover:-translate-y-0.5',
+                        )}
+                        style={{
+                          height: '56px',
+                          boxShadow: `0 0 0 0 transparent`,
+                          transition:
+                            'box-shadow 0.3s ease, transform 0.3s ease',
+                        }}
+                        onMouseEnter={(e) => {
+                          e.currentTarget.style.boxShadow = `0 0 24px -6px ${card.glow}`;
+                        }}
+                        onMouseLeave={(e) => {
+                          e.currentTarget.style.boxShadow = `0 0 0 0 transparent`;
+                        }}
+                      >
+                        <div
+                          className={cn(
+                            'absolute inset-0 bg-gradient-to-br transition-opacity duration-300 group-hover:opacity-100',
+                            card.gradient,
+                          )}
+                        />
+                        <div className='absolute inset-0 bg-gradient-to-r from-black/50 via-black/20 to-transparent' />
+                        <div
+                          className='absolute inset-0 opacity-40'
+                          style={{
+                            background:
+                              'radial-gradient(circle at 30% 50%, rgba(79, 163, 209, 0.08) 0%, transparent 70%)',
+                          }}
+                        />
+                        <div className='relative flex items-center gap-2.5'>
+                          <div className='flex h-8 w-8 items-center justify-center rounded-lg bg-white/10 backdrop-blur-sm'>
+                            <Icon size={14} className='text-gray-200' />
+                          </div>
+                          <div className='min-w-0'>
+                            <h4 className='font-mono text-xs font-semibold text-white transition-transform duration-200 group-hover:-translate-y-0.5 drop-shadow'>
+                              {card.title}
+                            </h4>
+                            <p className='font-mono truncate text-[8px] text-gray-300 drop-shadow'>
+                              {card.subtitle}
+                            </p>
+                          </div>
+                        </div>
                       </div>
                     </Link>
                   );
@@ -339,6 +304,6 @@ export function Navbar() {
       </div>
 
       <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} />
-    </nav>
+    </motion.nav>
   );
 }

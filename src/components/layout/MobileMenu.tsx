@@ -101,7 +101,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
             href={href}
             onClick={onClose}
             className={cn(
-              'flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors',
+              'font-mono flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors',
               isActive
                 ? 'bg-white/10 text-white'
                 : 'text-gray-400 hover:text-white',
@@ -122,7 +122,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
               href={href}
               onClick={onClose}
               className={cn(
-                'flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors',
+                'font-mono flex items-center gap-3 rounded-lg px-4 py-3 text-sm font-medium transition-colors',
                 isActive
                   ? 'bg-white/10 text-white'
                   : 'text-gray-400 hover:text-white',

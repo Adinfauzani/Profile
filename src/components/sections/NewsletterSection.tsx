@@ -39,11 +39,11 @@ export function NewsletterSection() {
                 <input
                   type='email'
                   placeholder='Enter your email'
-                  className='flex-1 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 backdrop-blur-sm transition-colors focus:border-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-400'
+                  className='font-mono flex-1 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-white placeholder-gray-500 backdrop-blur-sm transition-colors focus:border-indigo-400 focus:outline-none focus:ring-1 focus:ring-indigo-400'
                 />
                 <button
                   type='submit'
-                  className='inline-flex shrink-0 items-center gap-2 rounded-xl bg-indigo-600 px-5 py-3 text-sm font-medium text-white transition-all hover:bg-indigo-500'
+                  className='btn-pixel-primary font-mono inline-flex shrink-0 items-center gap-2 px-5 py-3 text-sm font-medium text-white'
                 >
                   Subscribe Now
                   <ArrowRight size={16} />

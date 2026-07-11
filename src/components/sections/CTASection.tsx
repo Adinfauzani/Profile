@@ -23,14 +23,14 @@ export function CTASection() {
           <div className='mt-8 flex flex-wrap items-center justify-center gap-4'>
             <Link
               href='/about'
-              className='inline-flex items-center gap-2 rounded-full bg-indigo-600 px-6 py-2.5 text-sm font-medium text-white transition-all hover:bg-indigo-500'
+              className='btn-pixel-primary font-mono inline-flex items-center gap-2 px-6 py-2.5 text-sm font-medium text-white'
             >
               Get in Touch
               <ArrowUpRight size={16} />
             </Link>
             <Link
               href='/projects'
-              className='inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-2.5 text-sm font-medium text-gray-300 transition-all hover:border-white/40 hover:text-white'
+              className='btn-pixel font-mono inline-flex items-center gap-2 px-6 py-2.5 text-sm font-medium text-gray-300'
             >
               View Projects
             </Link>

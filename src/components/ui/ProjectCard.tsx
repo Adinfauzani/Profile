@@ -33,10 +33,10 @@ export function ProjectCard({
   return (
     <motion.div
       className={cn(
-        'group relative overflow-hidden rounded-2xl border border-white/10',
-        'bg-white/[0.02] backdrop-blur-sm',
-        'transition-all duration-300',
-        'hover:-translate-y-1 hover:border-indigo-500 hover:shadow-[0_0_30px_rgba(99,102,241,0.2)]',
+        'group relative overflow-hidden card-pixel',
+        'bg-white/[0.02]',
+        'transition-all duration-100',
+        'hover:border-indigo-500/30 hover:shadow-[2px_2px_0px_0px_rgba(99,102,241,0.2)]',
       )}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -88,7 +88,7 @@ export function ProjectCard({
           {tech.map((t) => (
             <span
               key={t}
-              className='rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-gray-300'
+              className='font-mono rounded-full bg-white/10 px-3 py-1 text-xs font-medium text-gray-300'
             >
               {t}
             </span>

@@ -4,8 +4,22 @@
   --color-primary-500: #6366f1;
   --color-primary-600: #4f46e5;
 
-  --font-sans: var(--font-plus-jakarta-sans);
+  --font-sans: var(--font-inter);
+  --font-heading: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
   --font-accent: var(--font-dancing-script);
+
+  --pixel-border: 2px;
+  --pixel-shadow: 2px 2px 0px 0px;
+  --pixel-radius: 0.5rem;
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    image-rendering: pixelated;
+  }
 }
 
 html {
@@ -33,4 +47,81 @@ body::before {
   width: 91.666667%;
   margin-left: auto;
   margin-right: auto;
+}
+
+.font-geist-mono {
+  font-family: 'Geist Mono', 'Geist Mono Fallback', monospace;
+}
+
+@layer components {
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(79, 163, 209, 0.3) transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(79, 163, 209, 0.3);
+    border-radius: 3px;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(79, 163, 209, 0.5);
+  }
+
+  .btn-pixel {
+    border: var(--pixel-border) solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--pixel-radius);
+    box-shadow: var(--pixel-shadow) rgba(99, 102, 241, 0.3);
+    transition: all 0.1s ease;
+    position: relative;
+  }
+
+  .btn-pixel:hover {
+    border-color: rgba(255, 255, 255, 0.3);
+    box-shadow: 1px 1px 0px 0px rgba(99, 102, 241, 0.4);
+    translate: 1px 1px;
+  }
+
+  .btn-pixel:active {
+    box-shadow: 0px 0px 0px 0px transparent;
+    translate: 2px 2px;
+  }
+
+  .btn-pixel-primary {
+    border: var(--pixel-border) solid #6366f1;
+    background: #6366f1;
+    border-radius: var(--pixel-radius);
+    box-shadow: var(--pixel-shadow) rgba(99, 102, 241, 0.5);
+    transition: all 0.1s ease;
+    position: relative;
+  }
+
+  .btn-pixel-primary:hover {
+    background: #4f46e5;
+    border-color: #4f46e5;
+    box-shadow: 1px 1px 0px 0px rgba(99, 102, 241, 0.6);
+    translate: 1px 1px;
+  }
+
+  .btn-pixel-primary:active {
+    box-shadow: 0px 0px 0px 0px transparent;
+    translate: 2px 2px;
+  }
+
+  .card-pixel {
+    border: var(--pixel-border) solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--pixel-radius);
+  }
+
+  .card-pixel:hover {
+    border-color: rgba(99, 102, 241, 0.3);
+  }
 }

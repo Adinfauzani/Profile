@@ -40,7 +40,7 @@ export function TechStack() {
               {stack.map((tech) => (
                 <span
                   key={tech}
-                  className='rounded-full bg-gray-800/50 px-4 py-2 text-sm font-medium text-gray-300 ring-1 ring-gray-700/50 transition-all hover:ring-indigo-500/20'
+                  className='font-mono rounded-full bg-gray-800/50 px-4 py-2 text-sm font-medium text-gray-300 ring-1 ring-gray-700/50 transition-all hover:ring-indigo-500/20'
                 >
                   {tech}
                 </span>
@@ -65,7 +65,7 @@ export function TechStack() {
               {tools.map((tool) => (
                 <span
                   key={tool}
-                  className='rounded-full bg-gray-800/50 px-4 py-2 text-sm font-medium text-gray-300 ring-1 ring-gray-700/50 transition-all hover:ring-indigo-500/20'
+                  className='font-mono rounded-full bg-gray-800/50 px-4 py-2 text-sm font-medium text-gray-300 ring-1 ring-gray-700/50 transition-all hover:ring-indigo-500/20'
                 >
                   {tool}
                 </span>

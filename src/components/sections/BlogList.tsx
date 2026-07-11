@@ -80,9 +80,9 @@ export function BlogList() {
             <motion.article
               key={post.title}
               variants={fadeInUp}
-              className='group flex flex-col rounded-xl border border-gray-800 bg-gray-900/30 p-6 transition-all duration-300 hover:border-gray-700 hover:bg-gray-900/50'
+              className='group flex flex-col card-pixel bg-gray-900/30 p-6 transition-all duration-100 hover:bg-gray-900/50'
             >
-              <div className='flex items-center gap-2 text-sm text-gray-500'>
+              <div className='font-mono flex items-center gap-2 text-sm text-gray-500'>
                 <Calendar size={14} />
                 <time dateTime={post.date}>{formatDate(post.date)}</time>
               </div>

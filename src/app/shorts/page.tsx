@@ -1,64 +1,13 @@
-const shorts = [
-  {
-    id: 'flexbox-mental-model',
-    title: 'Flexbox Mental Model',
-    content:
-      'Think of flexbox as a one-dimensional layout system. Main axis flows left-to-right by default (row), cross axis flows top-to-bottom. Use justify-content for main axis alignment, align-items for cross axis.',
-    tags: ['CSS', 'Flexbox'],
-    date: '2024-11-20',
-    views: 4500,
-  },
-  {
-    id: 'nextjs-fetch-method',
-    title: 'Next.js Data Fetching',
-    content:
-      'Server Components let you fetch data directly in your component. No more getServerSideProps. Just use async/await in your component and it works. The data is fetched on the server and sent to the client.',
-    tags: ['Next.js', 'Data Fetching'],
-    date: '2024-10-15',
-    views: 3800,
-  },
-  {
-    id: 'react-keys',
-    title: 'Why React Keys Matter',
-    content:
-      'Keys help React identify which items have changed, been added, or removed. Without keys, React may reorder elements unpredictably. Always use stable IDs, not array indices.',
-    tags: ['React', 'Performance'],
-    date: '2024-09-22',
-    views: 2900,
-  },
-  {
-    id: 'typescript-narrowing',
-    title: 'Type Narrowing in TypeScript',
-    content:
-      'Use typeof, instanceof, in, and custom type guards to narrow types. TypeScript will automatically narrow within conditional blocks. Custom type guards return type predicates.',
-    tags: ['TypeScript'],
-    date: '2024-08-18',
-    views: 2100,
-  },
-  {
-    id: 'tailwind-responsive',
-    title: 'Responsive Design with Tailwind',
-    content:
-      'Tailwind uses mobile-first breakpoints: sm (640px), md (768px), lg (1024px), xl (1280px), 2xl (1536px). Prefix utilities with breakpoint names.',
-    tags: ['Tailwind', 'CSS'],
-    date: '2024-07-10',
-    views: 1800,
-  },
-  {
-    id: 'framer-motion-layout',
-    title: 'Layout Animations with Framer Motion',
-    content:
-      'Add the layout prop to any motion component and it will automatically animate to its new position. Combine with layoutId for shared element transitions between routes.',
-    tags: ['Framer Motion', 'Animation'],
-    date: '2024-06-05',
-    views: 3200,
-  },
-];
+import { getAllShorts } from '@/lib/articles';
+import { DevToPublish } from '@/components/blog/DevToPublish';
 
-const totalViews = shorts.reduce((sum, s) => sum + s.views, 0);
-const uniqueTags = [...new Set(shorts.flatMap((s) => s.tags))];
+export default async function ShortsPage() {
+  const shorts = await getAllShorts();
 
-export default function ShortsPage() {
+  const totalViews = shorts.reduce((sum, s) => sum + s.views, 0);
+  const totalReactions = shorts.reduce((sum, s) => sum + s.reactions, 0);
+  const uniqueTags = [...new Set(shorts.flatMap((s) => s.tags))];
+
   return (
     <div className='min-h-screen'>
       <div className='mx-auto max-w-[860px] px-6 pt-32 pb-24'>
@@ -74,6 +23,10 @@ export default function ShortsPage() {
           {[
             { label: 'Snippets', value: shorts.length },
             { label: 'Total Views', value: totalViews.toLocaleString() },
+            {
+              label: 'Total Reactions',
+              value: totalReactions.toLocaleString(),
+            },
             { label: 'Topics', value: uniqueTags.length },
           ].map((stat) => (
             <div
@@ -94,9 +47,11 @@ export default function ShortsPage() {
         <div className='mt-12'>
           <div className='hidden md:grid grid-cols-12 gap-4 px-5 py-3 text-[11px] font-mono text-gray-600 tracking-[0.1em] uppercase border-b border-white/[0.06]'>
             <div className='col-span-5'>Title</div>
-            <div className='col-span-3'>Topics</div>
-            <div className='col-span-2 text-right'>Views</div>
-            <div className='col-span-2 text-right'>Date</div>
+            <div className='col-span-2'>Platform</div>
+            <div className='col-span-2'>Topics</div>
+            <div className='col-span-1 text-right'>Views</div>
+            <div className='col-span-1 text-right'>Reactions</div>
+            <div className='col-span-1 text-right'>Date</div>
           </div>
 
           <div className='divide-y divide-white/[0.04]'>
@@ -110,7 +65,20 @@ export default function ShortsPage() {
                     {short.title}
                   </p>
                 </div>
-                <div className='md:col-span-3 flex flex-wrap gap-1.5 items-start'>
+                <div className='md:col-span-2 flex items-center'>
+                  {short.platform === 'dev' ? (
+                    <span className='inline-flex items-center gap-1.5 text-[11px] font-mono px-2.5 py-1 rounded-full border border-emerald-500/20 text-emerald-400 bg-emerald-500/5'>
+                      <span className='w-1.5 h-1.5 rounded-full bg-emerald-400' />
+                      dev.to
+                    </span>
+                  ) : (
+                    <span className='inline-flex items-center gap-1.5 text-[11px] font-mono px-2.5 py-1 rounded-full border border-indigo-500/20 text-indigo-400 bg-indigo-500/5'>
+                      <span className='w-1.5 h-1.5 rounded-full bg-indigo-400' />
+                      Website
+                    </span>
+                  )}
+                </div>
+                <div className='md:col-span-2 flex flex-wrap gap-1.5 items-start'>
                   {short.tags.map((tag) => (
                     <span
                       key={tag}
@@ -120,7 +88,7 @@ export default function ShortsPage() {
                     </span>
                   ))}
                 </div>
-                <div className='md:col-span-2 flex items-center justify-start md:justify-end gap-1.5'>
+                <div className='md:col-span-1 flex items-center justify-start md:justify-end gap-1.5'>
                   <svg
                     width='12'
                     height='12'
@@ -137,12 +105,38 @@ export default function ShortsPage() {
                     {short.views.toLocaleString()}
                   </span>
                 </div>
-                <div className='md:col-span-2 text-sm text-gray-500 font-mono text-left md:text-right'>
-                  {new Date(short.date).toLocaleDateString('en-US', {
-                    month: 'short',
-                    day: 'numeric',
-                    year: 'numeric',
-                  })}
+                <div className='md:col-span-1 flex items-center justify-start md:justify-end gap-1.5'>
+                  <svg
+                    width='12'
+                    height='12'
+                    viewBox='0 0 24 24'
+                    fill='none'
+                    stroke='currentColor'
+                    strokeWidth='2'
+                    className='text-gray-600 shrink-0'
+                  >
+                    <path d='M20.84 4.61a5.5 5.5 0 0 1 0 7.78l-12 12a5.5 5.5 0 0 1-7.78 0l-12-12a5.5 5.5 0 0 1 0-7.78l12-12a5.5 5.5 0 0 1 7.78 0z' />
+                    <path d='M12 9v6l3 3' />
+                  </svg>
+                  <span className='text-sm text-gray-400 font-mono'>
+                    {short.reactions.toLocaleString()}
+                  </span>
+                </div>
+                <div className='md:col-span-1 text-sm text-gray-500 font-mono text-left md:text-right'>
+                  {short.platform === 'dev' && short.url ? (
+                    <DevToPublish
+                      slug={short.id}
+                      title={short.title}
+                      isDevToArticle={true}
+                      devtoUrl={short.url}
+                    />
+                  ) : (
+                    new Date(short.date).toLocaleDateString('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                      year: 'numeric',
+                    })
+                  )}
                 </div>
               </div>
             ))}

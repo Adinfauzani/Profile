@@ -21,24 +21,6 @@ function LinkedinIcon() {
   );
 }
 
-function MailIcon() {
-  return (
-    <svg
-      width='18'
-      height='18'
-      viewBox='0 0 24 24'
-      fill='none'
-      stroke='currentColor'
-      strokeWidth='2'
-      strokeLinecap='round'
-      strokeLinejoin='round'
-    >
-      <rect width='20' height='16' x='2' y='4' rx='2' />
-      <path d='m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7' />
-    </svg>
-  );
-}
-
 function InstagramIcon() {
   return (
     <svg
@@ -58,14 +40,6 @@ function InstagramIcon() {
   );
 }
 
-function TwitterIcon() {
-  return (
-    <svg width='18' height='18' viewBox='0 0 24 24' fill='currentColor'>
-      <path d='M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z' />
-    </svg>
-  );
-}
-
 const socialLinks = [
   { href: 'https://github.com/adinfauzani', icon: GithubIcon, label: 'GitHub' },
   {
@@ -73,13 +47,11 @@ const socialLinks = [
     icon: LinkedinIcon,
     label: 'LinkedIn',
   },
-  { href: 'mailto:hello@adinfauzan.dev', icon: MailIcon, label: 'Email' },
   {
     href: 'https://instagram.com/adinfauzani',
     icon: InstagramIcon,
     label: 'Instagram',
   },
-  { href: 'https://x.com/adinfauzani', icon: TwitterIcon, label: 'Twitter' },
 ];
 
 export function HeroSection() {
@@ -191,7 +163,7 @@ export function HeroSection() {
                     href={s.href}
                     target='_blank'
                     rel='noopener noreferrer'
-                    className='text-sm text-gray-500 transition-colors hover:text-white'
+                    className='-m-2 p-2 text-sm text-gray-500 transition-colors hover:text-white'
                     aria-label={s.label}
                   >
                     <s.icon />
@@ -202,10 +174,10 @@ export function HeroSection() {
                   href='/resume.pdf'
                   target='_blank'
                   rel='noopener noreferrer'
-                  className='inline-flex items-center gap-1.5 text-sm text-gray-500 transition-colors hover:text-white'
+                  className='-m-2 p-2 text-sm text-gray-500 transition-colors hover:text-white'
+                  aria-label='CV'
                 >
-                  <File size={16} />
-                  Resume
+                  <File size={18} />
                 </a>
               </motion.div>
             </motion.div>

@@ -1,6 +1,8 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { ChevronDown, ChevronUp, List } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 interface TOCItem {
   id: string;
@@ -12,7 +14,9 @@ export function TableOfContents({ content }: { content: string }) {
   const [activeId, setActiveId] = useState('');
   const [items, setItems] = useState<TOCItem[]>([]);
   const [progress, setProgress] = useState(0);
+  const [isOpen, setIsOpen] = useState(false);
   const observerRef = useRef<IntersectionObserver | null>(null);
+  const tocRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const headings = content.match(/^#{2,3}\s.+$/gm);
@@ -64,18 +68,48 @@ export function TableOfContents({ content }: { content: string }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsOpen(true);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   if (items.length === 0) return null;
 
   const activeIndex = items.findIndex((i) => i.id === activeId);
 
   return (
-    <nav className='sticky top-28 w-[280px] shrink-0 self-start max-h-[calc(100vh-10rem)] overflow-y-auto'>
-      <span className='text-[11px] font-mono text-gray-600 tracking-[0.15em] uppercase mb-6 block'>
-        On this page
-      </span>
+    <nav
+      ref={tocRef}
+      className='sticky top-28 max-h-[calc(100vh-10rem)] w-full lg:w-[240px] xl:w-[260px] shrink-0 self-start overflow-y-auto'
+    >
+      {/* Mobile toggle button */}
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className='lg:hidden flex items-center justify-between w-full mb-4 px-4 py-3 rounded-xl border border-white/[0.06] bg-white/[0.02] text-white transition-all duration-200 hover:border-white/10'
+        aria-expanded={isOpen}
+        aria-controls='toc-list'
+      >
+        <span className='flex items-center gap-2'>
+          <List size={16} className='text-gray-400' />
+          <span className='text-[11px] font-mono text-gray-500 tracking-[0.15em] uppercase'>
+            On this page
+          </span>
+        </span>
+        {isOpen ? (
+          <ChevronUp size={16} className='text-gray-400' />
+        ) : (
+          <ChevronDown size={16} className='text-gray-400' />
+        )}
+      </button>
 
-      {/* Vertical progress line */}
-      <div className='relative ml-[3px] mb-6'>
+      {/* Vertical progress line - desktop only */}
+      <div className='hidden lg:block relative ml-[3px] mb-6'>
         <div className='absolute left-0 top-0 bottom-0 w-px bg-white/[0.06] rounded-full' />
         <div
           className='absolute left-0 top-0 w-px bg-indigo-400/60 rounded-full transition-all duration-200 ease-out'
@@ -83,7 +117,14 @@ export function TableOfContents({ content }: { content: string }) {
         />
       </div>
 
-      <ul className='space-y-0'>
+      <motion.ul
+        id='toc-list'
+        className='space-y-0 lg:block'
+        initial={false}
+        animate={{ opacity: isOpen ? 1 : 0, height: isOpen ? 'auto' : 0 }}
+        transition={{ duration: 0.2, ease: 'easeInOut' }}
+        style={{ overflow: 'hidden' }}
+      >
         {items.map((item, i) => {
           const isActive = activeId === item.id;
           const num = String(i + 1).padStart(2, '0');
@@ -104,6 +145,7 @@ export function TableOfContents({ content }: { content: string }) {
                       el.getBoundingClientRect().top + window.scrollY - 100;
                     window.scrollTo({ top, behavior: 'smooth' });
                   }
+                  if (window.innerWidth < 1024) setIsOpen(false);
                 }}
               >
                 {/* Accent indicator */}
@@ -143,7 +185,7 @@ export function TableOfContents({ content }: { content: string }) {
             </li>
           );
         })}
-      </ul>
+      </motion.ul>
     </nav>
   );
 }

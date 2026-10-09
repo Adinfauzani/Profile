@@ -7,6 +7,7 @@ export const shorts = [
     tags: ['CSS', 'Flexbox'],
     date: '2024-11-20',
     views: 4500,
+    reactions: 156,
   },
   {
     id: 'nextjs-fetch-method',
@@ -16,6 +17,7 @@ export const shorts = [
     tags: ['Next.js', 'Data Fetching'],
     date: '2024-10-15',
     views: 3800,
+    reactions: 124,
   },
   {
     id: 'react-keys',
@@ -25,6 +27,7 @@ export const shorts = [
     tags: ['React', 'Performance'],
     date: '2024-09-22',
     views: 2900,
+    reactions: 89,
   },
   {
     id: 'typescript-narrowing',
@@ -34,6 +37,7 @@ export const shorts = [
     tags: ['TypeScript'],
     date: '2024-08-18',
     views: 2100,
+    reactions: 67,
   },
   {
     id: 'tailwind-responsive',
@@ -43,6 +47,7 @@ export const shorts = [
     tags: ['Tailwind', 'CSS'],
     date: '2024-07-10',
     views: 1800,
+    reactions: 54,
   },
   {
     id: 'framer-motion-layout',
@@ -52,5 +57,6 @@ export const shorts = [
     tags: ['Framer Motion', 'Animation'],
     date: '2024-06-05',
     views: 3200,
+    reactions: 98,
   },
 ];

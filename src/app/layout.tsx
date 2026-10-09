@@ -24,6 +24,11 @@ export const metadata: Metadata = {
   icons: {
     icon: '/favicon.ico',
   },
+  alternates: {
+    types: {
+      'application/rss+xml': '/rss.xml',
+    },
+  },
   openGraph: {
     title: 'Adin Fauzan | Fullstack Developer',
     description:
@@ -58,6 +63,7 @@ export default function RootLayout({
   return (
     <html
       lang='en'
+      suppressHydrationWarning
       className={`${geistSans.variable} ${geistMono.variable} ${inter.variable} ${dancingScript.variable}`}
     >
       <body className='bg-black text-white selection:bg-indigo-500/30 selection:text-indigo-300'>

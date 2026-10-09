@@ -18,7 +18,7 @@ export function CoverImage({ src, alt }: { src: string; alt: string }) {
     <motion.div
       ref={ref}
       style={{ scale }}
-      className='relative w-full h-[220px] sm:h-[300px] lg:h-[420px] rounded-[28px] overflow-hidden border border-white/[0.06]'
+      className='relative w-full h-[200px] sm:h-[260px] md:h-[320px] lg:h-[400px] xl:h-[480px] rounded-[28px] overflow-hidden border border-white/[0.06]'
     >
       <Image
         src={src}
@@ -26,7 +26,7 @@ export function CoverImage({ src, alt }: { src: string; alt: string }) {
         fill
         priority
         className='object-cover transition-transform duration-700 ease-out hover:scale-[1.015]'
-        sizes='(max-width: 768px) 100vw, 1280px'
+        sizes='(max-width: 640px) 100vw, (max-width: 1024px) 90vw, 1280px'
       />
     </motion.div>
   );

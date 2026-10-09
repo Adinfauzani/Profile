@@ -569,12 +569,21 @@ function StackedProfileCard() {
 export default function AboutPage() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [isDesktop, setIsDesktop] = useState(false);
   const sectionRef = useRef<HTMLElement | null>(null);
   const animating = useRef(false);
 
   useEffect(() => {
+    const mq = window.matchMedia('(min-width: 1024px)');
+    const update = () => setIsDesktop(mq.matches);
+    update();
+    mq.addEventListener('change', update);
+    return () => mq.removeEventListener('change', update);
+  }, []);
+
+  useEffect(() => {
     const section = sectionRef.current;
-    if (!section) return;
+    if (!section || !isDesktop) return;
 
     const handleWheel = (e: WheelEvent) => {
       const rect = section.getBoundingClientRect();
@@ -623,18 +632,18 @@ export default function AboutPage() {
 
     section.addEventListener('wheel', handleWheel, { passive: false });
     return () => section.removeEventListener('wheel', handleWheel);
-  }, [activeIndex]);
+  }, [activeIndex, isDesktop]);
 
   return (
     <main className='bg-black text-white'>
       {/* Background Gradient */}
-      <div className='fixed inset-0 -z-10'>
+      <div className='fixed inset-0 -z-10 overflow-hidden'>
         <div className='absolute inset-0 bg-gradient-to-br from-slate-950 via-black to-black opacity-100' />
         <div className='absolute top-0 left-1/4 w-[500px] h-[500px] rounded-full bg-indigo-950/5 blur-[120px]' />
       </div>
 
       {/* Premium About Section */}
-      <section className='relative pt-32 pb-40 overflow-hidden'>
+      <section className='relative pt-28 pb-24 md:pt-32 md:pb-40 overflow-hidden'>
         <div className='mx-auto max-w-[1180px] px-6'>
           {/* Section Title */}
           <motion.div
@@ -642,9 +651,9 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
-            className='mb-20 text-center'
+            className='mb-12 text-center md:mb-20'
           >
-            <h1 className='text-6xl md:text-7xl font-bold tracking-tight mb-3'>
+            <h1 className='text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight mb-3'>
               About <span className='text-[#4FA3D1]'>Me</span>
             </h1>
             <p className='text-base text-gray-400'>
@@ -653,10 +662,7 @@ export default function AboutPage() {
           </motion.div>
 
           {/* Two Column Layout */}
-          <div
-            className='grid gap-16 items-center'
-            style={{ gridTemplateColumns: '30% 70%' }}
-          >
+          <div className='grid grid-cols-1 items-center gap-12 lg:grid-cols-[30%_70%] lg:gap-16'>
             {/* LEFT COLUMN - Stacked Profile Card */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -674,18 +680,20 @@ export default function AboutPage() {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
               viewport={{ once: true }}
-              className='max-w-[680px]'
+              className='mx-auto w-full max-w-[680px]'
             >
               {/* Name */}
-              <h2 className='text-5xl font-bold text-white mb-3'>
+              <h2 className='text-3xl font-bold text-white mb-3 sm:text-4xl md:text-5xl'>
                 Adin Fauzan
               </h2>
 
               {/* Role */}
-              <p className='text-xl text-gray-300 mb-9'>Fullstack Developer</p>
+              <p className='text-lg text-gray-300 mb-7 md:text-xl md:mb-9'>
+                Fullstack Developer
+              </p>
 
               {/* Biography */}
-              <div className='space-y-7 text-lg leading-relaxed text-gray-300'>
+              <div className='space-y-7 text-base leading-relaxed text-gray-300 md:text-lg'>
                 <p>
                   Hey! I'm{' '}
                   <span className='text-white font-semibold'>Adin Fauzan</span>,
@@ -764,113 +772,148 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Journey Section - Pinned Storytelling */}
-      <section
-        ref={sectionRef}
-        className='relative'
-        style={{ height: `${timeline.length * 100}vh` }}
-      >
-        <div className='sticky top-0 h-screen overflow-hidden'>
-          <div className='absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none z-20' />
+      {/* Journey Section - Pinned Storytelling (desktop only) */}
+      {isDesktop ? (
+        <section
+          ref={sectionRef}
+          className='relative'
+          style={{ height: `${timeline.length * 100}vh` }}
+        >
+          <div className='sticky top-0 h-screen overflow-hidden'>
+            <div className='absolute inset-0 bg-gradient-to-b from-black via-transparent to-black pointer-events-none z-20' />
 
-          <div className='mx-auto max-w-[1180px] px-6 h-full flex flex-col justify-center'>
-            <div className='mb-10'>
-              <h2 className='text-4xl font-bold text-white'>Journey</h2>
-              <div className='w-12 h-1 bg-gradient-to-r from-indigo-500 to-transparent rounded-full mt-4' />
-            </div>
-
-            <div className='flex gap-14 items-center'>
-              <div className='w-[340px] shrink-0'>
-                <div className='space-y-8'>
-                  <div className='space-y-3'>
-                    <div className='text-6xl font-bold text-white tracking-tight'>
-                      {timeline[activeIndex].year}
-                    </div>
-                    <h3 className='text-xl font-bold text-white leading-snug'>
-                      {timeline[activeIndex].title}
-                    </h3>
-                    <p className='text-gray-400 text-sm leading-relaxed pr-4'>
-                      {timeline[activeIndex].description}
-                    </p>
-                  </div>
-
-                  <div className='flex items-center gap-2'>
-                    {timeline.map((_, i) => (
-                      <div
-                        key={i}
-                        className='h-[3px] rounded-full transition-all duration-500'
-                        style={{
-                          width: i === activeIndex ? '28px' : '12px',
-                          background:
-                            i <= activeIndex
-                              ? 'linear-gradient(90deg, rgba(99,102,241,0.8), rgba(99,102,241,0.4))'
-                              : 'rgba(255,255,255,0.12)',
-                        }}
-                      />
-                    ))}
-                  </div>
-                </div>
+            <div className='mx-auto max-w-[1180px] px-6 h-full flex flex-col justify-center'>
+              <div className='mb-10'>
+                <h2 className='text-4xl font-bold text-white'>Journey</h2>
+                <div className='w-12 h-1 bg-gradient-to-r from-indigo-500 to-transparent rounded-full mt-4' />
               </div>
 
-              <div className='flex-1 min-h-[260px] flex items-center'>
-                <AnimatePresence mode='wait' custom={direction}>
-                  <motion.div
-                    key={activeIndex}
-                    custom={direction}
-                    variants={{
-                      enter: (dir) => ({ y: dir > 0 ? 40 : -40, opacity: 0 }),
-                      center: { y: 0, opacity: 1, scale: 1 },
-                      exit: (dir) => ({
-                        y: dir > 0 ? -40 : 40,
-                        opacity: 0,
-                        scale: 0.98,
-                      }),
-                    }}
-                    initial='enter'
-                    animate='center'
-                    exit='exit'
-                    transition={{ duration: 0.45, ease: 'easeOut' }}
-                    className='w-full'
-                  >
-                    <div
-                      className='group relative h-[240px] rounded-[24px] p-9 overflow-hidden bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.06)] transition-all duration-300'
-                      style={{
-                        boxShadow: '0 0 30px -10px rgba(99,102,241,0.12)',
-                      }}
-                    >
-                      <div className='absolute bottom-[-16px] right-[24px] text-[160px] font-extrabold text-white/[0.06] pointer-events-none select-none leading-none'>
+              <div className='flex gap-14 items-center'>
+                <div className='w-[340px] shrink-0'>
+                  <div className='space-y-8'>
+                    <div className='space-y-3'>
+                      <div className='text-6xl font-bold text-white tracking-tight'>
                         {timeline[activeIndex].year}
                       </div>
-
-                      <div
-                        className='absolute left-0 top-4 bottom-4 w-[3px] bg-indigo-400 rounded-r-full'
-                        style={{
-                          boxShadow: '0 0 14px 3px rgba(99,102,241,0.25)',
-                        }}
-                      />
-
-                      <div className='relative z-10 flex flex-col h-full pt-1'>
-                        <div className='text-[14px] text-white/40 mb-5 tracking-wide uppercase'>
-                          Journey &bull; {timeline[activeIndex].year}
-                        </div>
-                        <h3 className='text-[34px] font-bold text-white leading-tight mb-3'>
-                          {timeline[activeIndex].title}
-                        </h3>
-                        <p className='text-[16px] text-white/70 leading-relaxed max-w-[90%]'>
-                          {timeline[activeIndex].description}
-                        </p>
-                      </div>
+                      <h3 className='text-xl font-bold text-white leading-snug'>
+                        {timeline[activeIndex].title}
+                      </h3>
+                      <p className='text-gray-400 text-sm leading-relaxed pr-4'>
+                        {timeline[activeIndex].description}
+                      </p>
                     </div>
-                  </motion.div>
-                </AnimatePresence>
+
+                    <div className='flex items-center gap-2'>
+                      {timeline.map((_, i) => (
+                        <div
+                          key={i}
+                          className='h-[3px] rounded-full transition-all duration-500'
+                          style={{
+                            width: i === activeIndex ? '28px' : '12px',
+                            background:
+                              i <= activeIndex
+                                ? 'linear-gradient(90deg, rgba(99,102,241,0.8), rgba(99,102,241,0.4))'
+                                : 'rgba(255,255,255,0.12)',
+                          }}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className='flex-1 min-h-[260px] flex items-center'>
+                  <AnimatePresence mode='wait' custom={direction}>
+                    <motion.div
+                      key={activeIndex}
+                      custom={direction}
+                      variants={{
+                        enter: (dir) => ({ y: dir > 0 ? 40 : -40, opacity: 0 }),
+                        center: { y: 0, opacity: 1, scale: 1 },
+                        exit: (dir) => ({
+                          y: dir > 0 ? -40 : 40,
+                          opacity: 0,
+                          scale: 0.98,
+                        }),
+                      }}
+                      initial='enter'
+                      animate='center'
+                      exit='exit'
+                      transition={{ duration: 0.45, ease: 'easeOut' }}
+                      className='w-full'
+                    >
+                      <div
+                        className='group relative h-[240px] rounded-[24px] p-9 overflow-hidden bg-[rgba(255,255,255,0.02)] border border-[rgba(255,255,255,0.06)] transition-all duration-300'
+                        style={{
+                          boxShadow: '0 0 30px -10px rgba(99,102,241,0.12)',
+                        }}
+                      >
+                        <div className='absolute bottom-[-16px] right-[24px] text-[160px] font-extrabold text-white/[0.06] pointer-events-none select-none leading-none'>
+                          {timeline[activeIndex].year}
+                        </div>
+
+                        <div
+                          className='absolute left-0 top-4 bottom-4 w-[3px] bg-indigo-400 rounded-r-full'
+                          style={{
+                            boxShadow: '0 0 14px 3px rgba(99,102,241,0.25)',
+                          }}
+                        />
+
+                        <div className='relative z-10 flex flex-col h-full pt-1'>
+                          <div className='text-[14px] text-white/40 mb-5 tracking-wide uppercase'>
+                            Journey &bull; {timeline[activeIndex].year}
+                          </div>
+                          <h3 className='text-[34px] font-bold text-white leading-tight mb-3'>
+                            {timeline[activeIndex].title}
+                          </h3>
+                          <p className='text-[16px] text-white/70 leading-relaxed max-w-[90%]'>
+                            {timeline[activeIndex].description}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  </AnimatePresence>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      ) : (
+        <section className='relative overflow-hidden py-20'>
+          <div className='mx-auto max-w-[1180px] px-6'>
+            <div className='mb-12'>
+              <h2 className='text-4xl font-bold text-white'>Journey</h2>
+              <div className='mt-4 h-1 w-12 rounded-full bg-gradient-to-r from-indigo-500 to-transparent' />
+            </div>
+
+            <div className='relative space-y-10 border-l border-white/10 pl-6'>
+              {timeline.map((item, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5 }}
+                  viewport={{ once: true, margin: '-60px' }}
+                  className='relative'
+                >
+                  <span className='absolute -left-[31px] top-1.5 h-3 w-3 rounded-full bg-indigo-400 shadow-[0_0_14px_3px_rgba(99,102,241,0.25)]' />
+                  <div className='mb-1 font-mono text-[13px] uppercase tracking-wide text-indigo-300/70'>
+                    {item.year}
+                  </div>
+                  <h3 className='mb-2 text-xl font-bold text-white'>
+                    {item.title}
+                  </h3>
+                  <p className='text-[15px] leading-relaxed text-gray-400'>
+                    {item.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Experiences Section */}
-      <section className='relative overflow-hidden py-[140px]'>
+      <section className='relative overflow-hidden py-20 md:py-[140px]'>
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -900,7 +943,7 @@ export default function AboutPage() {
         </motion.div>
 
         <div className='mx-auto max-w-[1180px] px-6 relative z-10'>
-          <div className='mb-24 text-center'>
+          <div className='mb-14 text-center md:mb-24'>
             <div className='inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/[0.08] bg-white/[0.03] mb-5'>
               <Briefcase size={16} className='text-white/40' />
             </div>
@@ -914,7 +957,7 @@ export default function AboutPage() {
             </p>
           </div>
 
-          <div className='space-y-20'>
+          <div className='space-y-12 md:space-y-20'>
             {experiences.map((exp, i) => (
               <motion.div
                 key={i}
@@ -922,9 +965,9 @@ export default function AboutPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
                 viewport={{ once: true, margin: '-60px' }}
-                className='flex gap-12'
+                className='flex flex-col gap-3 md:flex-row md:gap-12'
               >
-                <div className='w-[200px] shrink-0 pt-0.5'>
+                <div className='w-full shrink-0 pt-0.5 md:w-[200px]'>
                   <span className='text-[13px] text-gray-500 tracking-wide'>
                     {exp.date}
                   </span>

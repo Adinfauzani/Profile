@@ -55,7 +55,9 @@ Motion for React makes list animations straightforward and performant.
     tags: ['react', 'animation'],
     readTime: '6 min',
     views: 1250,
+    reactions: 42,
     image: 'https://images.unsplash.com/photo-1633356122544-f134324a6cee?w=800',
+    featured: true,
   },
   {
     slug: 'advanced-react-patterns',
@@ -107,7 +109,9 @@ These patterns are essential for building robust React applications.
     tags: ['react', 'patterns'],
     readTime: '10 min',
     views: 2100,
+    reactions: 89,
     image: 'https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?w=800',
+    featured: true,
   },
   {
     slug: 'nextjs-authentication-hoc',
@@ -152,7 +156,9 @@ HOCs provide a clean way to handle authentication in Next.js.
     tags: ['nextjs', 'auth'],
     readTime: '7 min',
     views: 1800,
+    reactions: 56,
     image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800',
+    featured: false,
   },
   {
     slug: 'nextjs-app-router-guide',
@@ -194,7 +200,9 @@ The App Router is the future of Next.js.
     tags: ['nextjs', 'app-router'],
     readTime: '8 min',
     views: 3200,
+    reactions: 124,
     image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800',
+    featured: false,
   },
   {
     slug: 'typescript-best-practices',
@@ -234,7 +242,9 @@ These patterns will make your React codebase more robust.
     tags: ['typescript', 'react'],
     readTime: '6 min',
     views: 2800,
+    reactions: 98,
     image: 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?w=800',
+    featured: false,
   },
   {
     slug: 'tailwind-css-tips',
@@ -268,7 +278,9 @@ Tailwind CSS accelerates development without sacrificing design quality.
     tags: ['tailwind', 'css'],
     readTime: '5 min',
     views: 1500,
+    reactions: 31,
     image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800',
+    featured: false,
   },
 ];
 

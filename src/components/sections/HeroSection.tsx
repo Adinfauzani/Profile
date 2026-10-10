@@ -171,7 +171,7 @@ export function HeroSection() {
                 ))}
                 <span className='text-gray-600 text-sm'>|</span>
                 <a
-                  href='/resume.pdf'
+                  href='https://drive.google.com/file/d/1_4AkITA4KrEIjlPs0N3Xt-JBasRL0HX1/view?usp=drivesdk'
                   target='_blank'
                   rel='noopener noreferrer'
                   className='-m-2 p-2 text-sm text-gray-500 transition-colors hover:text-white'
